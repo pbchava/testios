@@ -57,8 +57,8 @@ class Login: UIView {
         usuarioText.layer.cornerRadius = 20
         usuarioText.layer.borderWidth = 3
         
-        //passwordLabel = UILabel()
-        //passwordLabel.text = "Password:"
+        passwordLabel = UILabel()
+        passwordLabel.text = "Password:"
         passwordLabel.textColor = UIColor.white
         passwordLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
         passwordLabel.textAlignment = .center
@@ -67,8 +67,10 @@ class Login: UIView {
                                     width: self.frame.width * 0.8,
                                     height: self.frame.height * 0.1)
 
-        passwordText = UITextField()
-        passwordText.textAlignment = .center
+        
+		//TEst SAPB Hello World GIT XCODE
+		//passwordText = UITextField()
+        //passwordText.textAlignment = .center
         passwordText.textColor = UIColor.white
         passwordText.frame = CGRect(x: self.frame.origin.x + self.frame.width * 0.1,
                                   y: self.frame.origin.y + self.frame.height * 0.4,
