@@ -34,9 +34,9 @@ class Login: UIView {
                               y: self.frame.origin.y,
                               width: self.frame.width * 1,
                               height: self.frame.height * 1)
-        
-        usuarioLabel = UILabel()
-        usuarioLabel.text = "Usuario:"
+//        se comentan 2 lineas
+//        usuarioLabel = UILabel()
+//        usuarioLabel.text = "Usuario:"
         usuarioLabel.textColor = UIColor.white
         usuarioLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
         usuarioLabel.textAlignment = .center
