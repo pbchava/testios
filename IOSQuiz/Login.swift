@@ -57,8 +57,8 @@ class Login: UIView {
         usuarioText.layer.cornerRadius = 20
         usuarioText.layer.borderWidth = 3
         
-        passwordLabel = UILabel()
-        passwordLabel.text = "Password:"
+        //passwordLabel = UILabel()
+        //passwordLabel.text = "Password:"
         passwordLabel.textColor = UIColor.white
         passwordLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
         passwordLabel.textAlignment = .center
