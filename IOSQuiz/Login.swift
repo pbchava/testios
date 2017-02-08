@@ -15,7 +15,7 @@ class Login: UIView {
     var passwordLabel : UILabel!
     var passwordText : UITextField!
     var nextButton : UIButton!
-    
+//    hola
     override init(frame: CGRect){
         super.init(frame: frame)
         iniciarPropiedades()
