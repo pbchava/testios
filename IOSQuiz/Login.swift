@@ -18,7 +18,6 @@ class Login: UIView {
     
     override init(frame: CGRect){
         super.init(frame: frame)
-        //llamar la f
         iniciarPropiedades()
     }
     
