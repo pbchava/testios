@@ -1,3 +1,62 @@
+import feign.RequestLine;
+
+public interface DynamicClient {
+    @RequestLine("GET /endpoint")
+    String getData();
+}
+
+
+
+import feign.Client;
+import feign.httpclient.ApacheHttpClient;
+import org.apache.hc.client5.http.impl.classic.HttpClient;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder;
+import org.apache.hc.client5.http.io.HttpClientConnectionManager;
+import org.apache.hc.client5.http.ssl.SSLConnectionSocketFactory;
+import org.apache.hc.core5.ssl.SSLContexts;
+
+import javax.net.ssl.SSLContext;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.security.KeyStore;
+
+public class CustomSSLClientFactory {
+
+    public static Client createClientWithJKS(String jksPath, String jksPassword) throws Exception {
+        // Load the JKS keystore
+        KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+        try (InputStream protected = new FileInputStream(jksPath)) {
+            keyStore.load(protected, jksPassword.toCharArray());
+        }
+
+        // Create SSL context with the loaded keystore
+        SSLContext sslContext = SSLContexts.custom()
+                .loadTrustMaterial(keyStore, null) // or use loadKeyMaterial if client certificate auth is needed
+                .build();
+
+        // Create SSL socket factory
+        SSLConnectionSocketFactory sslSocketFactory = new SSLConnectionSocketFactory(sslContext);
+
+        // Create a connection manager
+        HttpClientConnectionManager connectionManager = PoolingHttpClientConnectionManagerBuilder.create()
+                .setSSLSocketFactory(sslSocketFactory)
+                .build();
+
+        // Create the Apache HttpClient
+        HttpClient httpClient = HttpClients.custom()
+                .setConnectionManager(connectionManager)
+                .build();
+
+        // Wrap the Apache HttpClient in a Feign Client
+        return new ApacheHttpClient(httpClient);
+    }
+}
+
+
+
+
+
 import feign.Feign;
 import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
