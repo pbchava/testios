@@ -1,0 +1,20 @@
+import feign.Feign;
+import feign.jackson.JacksonDecoder;
+import feign.jackson.JacksonEncoder;
+
+public class DynamicClientService {
+
+    public DynamicClient buildDynamicClient(String dynamicUrl, String jksPath, String jksPassword) {
+        try {
+            Client customClient = CustomSSLClientFactory.createClientWithJKS(jksPath, jksPassword);
+
+            return Feign.builder()
+                    .client(customClient) // Use the custom SSL client
+                    .encoder(new JacksonEncoder())
+                    .decoder(new JacksonDecoder())
+                    .target(DynamicClient.class, dynamicUrl); // Set the dynamic URL
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create dynamic Feign client", e);
+        }
+    }
+}
