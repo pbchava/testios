@@ -1,0 +1,116 @@
+//DEPENDENCIAS
+<dependencies>
+    <!-- Feign Core -->
+    <dependency>
+        <groupId>io.github.openfeign</groupId>
+        <artifactId>feign-core</artifactId>
+        <version>12.5</version>
+    </dependency>
+
+    <!-- Feign Apache HTTP Client -->
+    <dependency>
+        <groupId>io.github.openfeign</groupId>
+        <artifactId>feign-httpclient</artifactId>
+        <version>12.5</version>
+    </dependency>
+
+    <!-- Apache HttpClient -->
+    <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>4.5.14</version>
+    </dependency>
+</dependencies>
+
+
+//Feign Client Interface
+import feign.RequestLine;
+
+public interface MyFeignClient {
+
+    @RequestLine("GET /health")
+    String health();
+}
+
+//3. SSL + Feign Client Factory (Dynamic JKS & URI)
+import feign.Feign;
+import feign.httpclient.ApacheHttpClient;
+
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContextBuilder;
+
+import javax.net.ssl.SSLContext;
+import java.io.FileInputStream;
+import java.security.KeyStore;
+
+public class FeignClientFactory {
+
+    public static <T> T createClient(
+            Class<T> clientClass,
+            String baseUrl,
+            String jksPath,
+            String jksPassword
+    ) {
+        try {
+            // Load JKS
+            KeyStore keyStore = KeyStore.getInstance("JKS");
+            try (FileInputStream fis = new FileInputStream(jksPath)) {
+                keyStore.load(fis, jksPassword.toCharArray());
+            }
+
+            // Build SSL context
+            SSLContext sslContext = SSLContextBuilder.create()
+                    .loadKeyMaterial(keyStore, jksPassword.toCharArray())
+                    .loadTrustMaterial(keyStore, null)
+                    .build();
+
+            // Create SSL socket factory
+            SSLConnectionSocketFactory socketFactory =
+                    new SSLConnectionSocketFactory(
+                            sslContext,
+                            NoopHostnameVerifier.INSTANCE
+                    );
+
+            // Build HttpClient
+            CloseableHttpClient httpClient = HttpClients.custom()
+                    .setSSLSocketFactory(socketFactory)
+                    .build();
+
+            // Build Feign client
+            return Feign.builder()
+                    .client(new ApacheHttpClient(httpClient))
+                    .target(clientClass, baseUrl);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create Feign client", e);
+        }
+    }
+}
+
+
+//Usage Example (Dynamic Values)
+
+public class Application {
+
+    public static void main(String[] args) {
+
+        String baseUrl = "https://localhost:8443";
+        String jksPath = "/opt/certs/client.jks";
+        String jksPassword = "changeit";
+
+        MyFeignClient client = FeignClientFactory.createClient(
+                MyFeignClient.class,
+                baseUrl,
+                jksPath,
+                jksPassword
+        );
+
+        String response = client.health();
+        System.out.println(response);
+    }
+}
+
+
