@@ -114,3 +114,88 @@ public class Application {
 }
 
 
+
+
+
+
+import feign.Feign;
+import feign.jackson.JacksonDecoder;
+import feign.jackson.JacksonEncoder;
+import feign.okhttp.OkHttpClient;
+
+import javax.net.ssl.*;
+import java.io.InputStream;
+import java.net.URL;
+import java.security.KeyStore;
+
+import okhttp3.ConnectionPool;
+import okhttp3.OkHttpClient.Builder;
+
+public class DynamicFeignClientFactory {
+
+    public static <T> T createClient(
+            Class<T> clientClass,
+            String baseUrl,
+            String jksPath,
+            String jksPassword
+    ) {
+        try {
+            SSLContext sslContext = createSslContext(jksPath, jksPassword);
+
+            Builder okHttpBuilder = new Builder()
+                    .sslSocketFactory(
+                            sslContext.getSocketFactory(),
+                            trustManager(jksPath, jksPassword)
+                    )
+                    .connectionPool(new ConnectionPool());
+
+            return Feign.builder()
+                    .client(new OkHttpClient(okHttpBuilder.build()))
+                    .encoder(new JacksonEncoder())
+                    .decoder(new JacksonDecoder())
+                    .target(clientClass, baseUrl);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create Feign client", e);
+        }
+    }
+
+    private static SSLContext createSslContext(String jksPath, String password) throws Exception {
+        KeyStore keyStore = KeyStore.getInstance("JKS");
+
+        try (InputStream is = openJksStream(jksPath)) {
+            keyStore.load(is, password.toCharArray());
+        }
+
+        TrustManagerFactory tmf =
+                TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+        tmf.init(keyStore);
+
+        SSLContext sslContext = SSLContext.getInstance("TLS");
+        sslContext.init(null, tmf.getTrustManagers(), null);
+        return sslContext;
+    }
+
+    private static X509TrustManager trustManager(String jksPath, String password) throws Exception {
+        KeyStore keyStore = KeyStore.getInstance("JKS");
+
+        try (InputStream is = openJksStream(jksPath)) {
+            keyStore.load(is, password.toCharArray());
+        }
+
+        TrustManagerFactory tmf =
+                TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+        tmf.init(keyStore);
+
+        return (X509TrustManager) tmf.getTrustManagers()[0];
+    }
+
+    private static InputStream openJksStream(String jksPath) throws Exception {
+        // Supports local file or remote HTTPS URL
+        if (jksPath.startsWith("http")) {
+            return new URL(jksPath).openStream();
+        }
+        return new URL("file:" + jksPath).openStream();
+    }
+}
+
