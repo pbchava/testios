@@ -1,0 +1,16 @@
+PowerShell (recommended)
+
+Single folder:
+Get-ChildItem -File | Select-Object FullName, Length
+
+Recursive (all subfolders):
+Get-ChildItem -File -Recurse | Select-Object FullName, Length
+
+Human‑readable size and sorted by size:
+Get-ChildItem -File -Recurse |
+  Select-Object FullName,@{Name='Size';Expression={ "{0:N2} MB" -f ($_.Length/1MB)}} |
+  Sort-Object @{Expression={[double]($_.Size -replace '[^0-9.]','')};Descending=$true}
+
+Export to CSV:
+Get-ChildItem -File -Recurse | Select-Object FullName,Length | Export-Csv -Path files.csv -NoTypeInformation
+
