@@ -10,6 +10,12 @@ public class SharePointLegacyDownload {
         String password = "YourPassword123!";
         String outputPath = "downloaded_file.pdf";
 
+System.setProperty("https.proxyHost", "your.proxy.server.com");
+System.setProperty("https.proxyPort", "8080");
+// If your proxy requires authentication:
+System.setProperty("https.proxyUser", "username");
+System.setProperty("https.proxyPassword", "password");
+
         try {
             URL url = new URL(fileUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
