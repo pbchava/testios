@@ -1,50 +1,36 @@
-import java.io.*;
+<dependency>
+    <groupId>com.github.markusbernhardt</groupId>
+    <artifactId>proxy-vole</artifactId>
+    <version>1.1.5</version>
+</dependency>
+
+import com.github.markusbernhardt.proxy.ProxySearch;
 import java.net.*;
-import java.util.Base64;
+import java.util.List;
 
-public class SharePointLegacyDownload {
-
+public class SharePointPacDownloader {
     public static void main(String[] args) {
-        String fileUrl = "https://yourtenant.sharepoint.com/sites/YourSite/Shared%20Documents/file.pdf";
-        String username = "yourname@yourtenant.onmicrosoft.com";
-        String password = "YourPassword123!";
-        String outputPath = "downloaded_file.pdf";
+        // 1. Automatically find and load the PAC file/System Proxy
+        ProxySearch proxySearch = ProxySearch.getDefaultProxySearch();
+        ProxySelector proxySelector = proxySearch.getProxySelector();
+        
+        if (proxySelector != null) {
+            ProxySelector.setDefault(proxySelector);
+            System.out.println("PAC/System Proxy logic loaded.");
+        }
 
-System.setProperty("https.proxyHost", "your.proxy.server.com");
-System.setProperty("https.proxyPort", "8080");
-// If your proxy requires authentication:
-System.setProperty("https.proxyUser", "username");
-System.setProperty("https.proxyPassword", "password");
-
+        // 2. Now attempt your SharePoint connection
         try {
-            URL url = new URL(fileUrl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-            // 1. Basic Authentication (Works if Legacy Auth is enabled)
-            String auth = username + ":" + password;
-            String encodedAuth = Base64.getEncoder().encodeToString(auth.getBytes());
-            connection.setRequestProperty("Authorization", "Basic " + encodedAuth);
+            URL url = new URL("https://yourtenant.sharepoint.com/...");
             
-            // 2. Set User-Agent to avoid being blocked as a bot
-            connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+            // Check which proxy is being used for this specific URL
+            List<Proxy> proxies = ProxySelector.getDefault().select(url.toURI());
+            System.out.println("Using proxy: " + proxies.get(0));
 
-            int responseCode = connection.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                try (InputStream inputStream = connection.getInputStream();
-                     FileOutputStream outputStream = new FileOutputStream(outputPath)) {
-
-                    byte[] buffer = new byte[4096];
-                    int bytesRead;
-                    while ((bytesRead = inputStream.read(buffer)) != -1) {
-                        outputStream.write(buffer, 0, bytesRead);
-                    }
-                    System.out.println("File downloaded successfully!");
-                }
-            } else {
-                System.out.println("Server returned HTTP code: " + responseCode);
-                // Note: 403 usually means MFA is required or Legacy Auth is blocked.
-            }
-        } catch (IOException e) {
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            // ... rest of your download code ...
+            
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
