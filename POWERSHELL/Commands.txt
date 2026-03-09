@@ -1,0 +1,5 @@
+--Obtener Version compatible con powershell 5.1.x
+Save-Module -Name "PnP.PowerShell" -RequiredVersion 1.12.0 -Path "C:\tempo"
+
+--Importar modulo en Powershell
+Import-Module "C:\tempo\PnP.PowerShell\1.12.0\PnP.PowerShell.psd1"
