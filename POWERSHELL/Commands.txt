@@ -3,3 +3,34 @@ Save-Module -Name "PnP.PowerShell" -RequiredVersion 1.12.0 -Path "C:\tempo"
 
 --Importar modulo en Powershell
 Import-Module "C:\tempo\PnP.PowerShell\1.12.0\PnP.PowerShell.psd1"
+
+
+# Prerequisites: Make sure PnP.PowerShell module is installed
+# Install-Module -Name PnP.PowerShell -Force
+
+# --- Configuration Variables ---
+$siteURL = "https://yourtenant.sharepoint.com"
+$fileRelativeURL = "/Shared Documents/YourDocument.docx" # e.g., "/sites/YourSiteName/Shared Documents/YourDocument.docx"
+$localPath = "C:\Temp"
+$fileName = "DownloadedDocument.docx"
+# -------------------------------
+
+# Connect to SharePoint Online
+Connect-PnPOnline -Url $siteURL -Interactive
+
+# Ensure the local directory exists
+if (-not (Test-Path $localPath)) {
+    New-Item -Path $localPath -ItemType Directory | Out-Null
+}
+
+# Download the file
+try {
+    Get-PnPFile -Url $fileRelativeURL -Path $localPath -FileName $fileName -AsFile -Force
+    Write-Host "File '$fileName' downloaded successfully to '$localPath\$fileName'" -ForegroundColor Green
+}
+catch {
+    Write-Host "Error downloading file: $_" -ForegroundColor Red
+}
+
+# Disconnect from SharePoint (optional)
+Disconnect-PnPOnline
