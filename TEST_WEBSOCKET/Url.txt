@@ -1,0 +1,2 @@
+http://localhost:8080/ (ejemplo basico, jala solo el connect)
+http://localhost:8080/index2.html (ejemplo con librerias- jala en Edge y Chrome)
