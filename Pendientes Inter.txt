@@ -4,3 +4,6 @@ Revision con INCODE mecanismo de descarga de videoselfie {RAO}
 Confirmacion de NFRs de expedientes {RAO}
 Confirmacion de capacidad para atender nuevos NFRs {AO/Inter/Filenet}
 Revision de proyecto de RED para integracion con APIs de Interoperabilidad {RAO}
+
+<logger name="org.apache.http.wire" level="DEBUG" />
+<logger name="org.apache.http.conn.ssl" level="DEBUG" />
