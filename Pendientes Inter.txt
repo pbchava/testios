@@ -7,3 +7,6 @@ Revision de proyecto de RED para integracion con APIs de Interoperabilidad {RAO}
 
 <logger name="org.apache.http.wire" level="DEBUG" />
 <logger name="org.apache.http.conn.ssl" level="DEBUG" />
+
+
+-Djavax.net.debug=ssl:handshake
