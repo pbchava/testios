@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla JS PDF Validator</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; padding: 20px; max-width: 800px; margin: auto; }
+        #output { margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; }
+        .error { color: #d93025; font-weight: bold; }
+        .success { color: #188038; font-weight: bold; }
+        .info { color: #1a73e8; }
+    </style>
+</head>
+<body>
+
+    <h2>PDF Validator & XML Counter</h2>
+    <p>Upload a PDF to verify its integrity and count specific XML tags in its metadata.</p>
+
+    <input type="file" id="pdfInput" accept="application/pdf">
+    <br><br>
+    <label for="tagName">XML Tag to search:</label><br>
+    <input type="text" id="tagName" value="EncryptedSignatureDataContainer">
+
+    <div id="output">Results will appear here...</div>
+
+    <script>
+        const input = document.getElementById('pdfInput');
+        const tagInput = document.getElementById('tagName');
+        const output = document.getElementById('output');
+
+        input.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            output.innerHTML = "Processing...";
+
+            try {
+                const arrayBuffer = await file.arrayBuffer();
+                const tagName = tagInput.value.trim();
+                
+                // 1. Check for Corruption
+                const corruptionReport = validatePDFStructure(arrayBuffer);
+                
+                // 2. Count XML Elements
+                const xmlCount = countXmlElements(arrayBuffer, tagName);
+
+                // 3. Display Results
+                displayResults(corruptionReport, xmlCount, tagName);
+
+            } catch (err) {
+                output.innerHTML = `<span class="error">Error reading file: ${err.message}</span>`;
+            }
+        });
+
+        /**
+         * Checks the magic bytes of the PDF.
+         * Valid PDFs must start with %PDF- and end with %%EOF
+         */
+        function validatePDFStructure(buffer) {
+            const view = new Uint8Array(buffer);
+            const decoder = new TextDecoder();
+
+            // Check Header (First 5 bytes)
+            const header = decoder.decode(view.slice(0, 5));
+            const hasValidHeader = header === "%PDF-";
+
+            // Check Footer (Search within the last 100 bytes for flexibility)
+            const footerRange = view.slice(-100);
+            const footerText = decoder.decode(footerRange);
+            const hasValidFooter = footerText.includes("%%EOF");
+
+            return {
+                isValid: hasValidHeader && hasValidFooter,
+                headerFound: header,
+                footerFound: hasValidFooter
+            };
+        }
+
+        /**
+         * Scans the binary data for XML tag occurrences.
+         */
+        function countXmlElements(buffer, tagName) {
+            if (!tagName) return 0;
+            
+            const decoder = new TextDecoder();
+            const text = decoder.decode(buffer);
+            
+            // Regex explanation:
+            // <           : matches literal <
+            // ${tagName}  : matches your tag
+            // \\b         : word boundary (prevents matching "tagname-plus")
+            // [^>]* : matches any attributes inside the tag
+            // >           : matches literal >
+            const regex = new RegExp(`<${tagName}\\b[^>]*>`, 'g');
+            const matches = text.match(regex);
+            
+            return matches ? matches.length : 0;
+        }
+
+        function displayResults(report, count, tag) {
+            let html = `<h3>File Report:</h3>`;
+            
+            if (report.isValid) {
+                html += `<p class="success">✓ Structure: Valid PDF</p>`;
+            } else {
+                html += `<p class="error">✗ Structure: Corrupt or Invalid</p>`;
+                html += `<small>Header: ${report.headerFound} | EOF Marker: ${report.footerFound ? 'Found' : 'Missing'}</small>`;
+            }
+
+            html += `<hr>`;
+            html += `<p class="info">Occurrences of <b>&lt;${tag}&gt;</b>: <strong>${count}</strong></p>`;
+            
+            if (count === 0) {
+                html += `<p><small><i>Note: If you expected results, the XML might be compressed (FlateDecode). Vanilla JS cannot read compressed streams without a library like pako.js.</i></small></p>`;
+            }
+
+            output.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
