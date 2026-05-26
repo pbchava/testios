@@ -1,0 +1,59 @@
+//The Connect function serves to open the connection and send data
+        function connectBinary() {
+			$("#serStatus").addClass('black');
+			console.log("WebSocket Status: connectado!");
+			$("#serStatus").html("WebSocket Status: connectado!");
+			var archivoCargado = $("#archivoEnvio");
+					
+			var inputFileImage = document.getElementById("archivoEnvio");
+			var file = inputFileImage.files[0];
+			var xhr = new XMLHttpRequest();
+
+			xhr.open("POST", "https://127.0.0.1:8454/proxy", true);
+
+			/*
+				IMPORTANTE: como envías XML o archivo
+			*/
+			xhr.setRequestHeader("Content-Type", "application/octet-stream");
+			xhr.setRequestHeader("isMock", true);//puede ser true cuando quieran el mock y false en caso contrario
+
+			/*
+				respuesta como texto (XML)
+			*/
+			xhr.responseType = "text";
+
+			/*
+				timeout opcional (1 min)
+			*/
+			xhr.timeout = 60000;
+
+			xhr.onreadystatechange = function () {
+
+				if (xhr.readyState === XMLHttpRequest.DONE) {
+					if (xhr.status === 200) {
+                        // debugeo
+						console.log("Respuesta REST:", xhr.responseText);
+
+						$("#serStatus").html(xhr.responseText);
+
+					} else {
+						console.error("HTTP error:", xhr.status);
+					}
+				}
+
+			};
+
+			xhr.onerror = function () {
+				console.error("Error de conexión");
+			};
+
+			xhr.ontimeout = function () {
+				console.error("Timeout del servidor");
+			};
+
+			/*
+				aquí envías el archivo o XML
+			*/
+			xhr.send(file);
+			
+     }
