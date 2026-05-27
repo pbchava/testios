@@ -1,0 +1,14 @@
+Install Offline
+https://gemini.google.com/app/24fcda314670f113
+
+Download
+mkdir docx_offline
+cd docx_offline
+pip download python-docx
+
+Install
+cd path/to/docx_offline
+pip install --no-index --find-links . python-docx
+
+
+
