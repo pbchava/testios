@@ -1,0 +1,304 @@
+﻿<#
+--------------------------------------------------
+.DESCRIPTION
+  Script template to facilitate package installation.
+.NOTES
+  Author:         Andrew Maffesoli (AM05605)
+  Script created:  9/17/2021
+  Last Modified:  11/1/2021 - With execution terminate if any error found
+  Template Ver:   2.1.3
+  Email:          andrew.maffesoli@citi.com
+--------------------------------------------------
+#>
+
+#------------------------------[VARIABLES TO EDIT]-------------------------
+
+$PKGID = "CITIPINPAD_1.0.5_00_MP01_S00"
+$Type = "Install" # Set to either 'Install' or 'Uninstall'
+$ProductsToUninstall = @(
+    @{ Version = "1.0.0"; ProductCode = "{80A3500E-9975-475B-A6B0-C973C0DB7C41}" },
+    @{ Version = "1.0.1"; ProductCode = "{17802E6C-E1BA-4843-8980-9B2879EF4065}" },
+    @{ Version = "1.0.3"; ProductCode = "{9E1CFEF0-603C-4409-9301-6DA9294B39E3}" },
+    @{ Version = "1.0.4"; ProductCode = "{6246136D-8BF5-4B4E-B97F-181D7FB69C75}" }
+)
+
+#------------------------------[DECLARATIONS]------------------------------
+
+$OSVer = [System.Environment]::OSVersion.Version.ToString()
+$OsArchitecture = (Get-WmiObject Win32_OperatingSystem | Select -First 1).OSArchitecture
+$SRC = $PSScriptRoot
+$LogFile = "$env:SystemRoot\Logs\$PKGID"+"_Script_$Type.log"
+$UninstallRegKeys = @(
+    "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall"
+    "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
+)
+
+#------------------------------[FUNCTIONS]---------------------------------
+
+Function WriteToLog() {
+    Param(
+        [parameter(ValueFromPipeline)][string]$input
+    )
+    Process {
+        "$(GetDateTimeNow)  $input" | Add-Content -Path $LogFile
+    }
+}
+
+Function GetDateTimeNow {
+    return Get-Date -Format "MM/dd/yyyy-HH:mm:ss"
+}
+
+Function Get-RecordsFromView {
+    param([Parameter(Mandatory=$true)]$View)
+
+    try {
+        $results = [System.Collections.ArrayList]::new()
+        $Columns = $View.GetType().InvokeMember("ColumnInfo","GetProperty",$null,$View,0)
+        $Record = $View.Fetch()
+        If (!$Record) {throw "No records found in this view"}
+        Do {
+            $x = 1
+            $data = New-Object psobject
+            $name = $Columns.GetType().InvokeMember("StringData","GetProperty",$null,$Columns,$x)
+            Do {
+                $value = $Record.GetType().InvokeMember("StringData","GetProperty",$null,$Record,$x)
+                $data | Add-Member -MemberType NoteProperty -Name $name -Value $value
+                $x++
+                $name = $Columns.GetType().InvokeMember("StringData","GetProperty",$null,$Columns,$x)
+            }
+            While ($name)
+            [void]$results.Add($data)
+            $Record = $View.Fetch()
+        }
+        While ($Record)
+        $results | Write-Output
+    }
+    catch {
+            $Error[0] | Write-Error      
+    }
+}
+
+Function Get-MSIinfo {
+    param(
+        [Parameter(Mandatory=$true)]
+        [ValidateNotNullOrEmpty()]
+        [string]$FilePath,
+        [Parameter(Mandatory=$true)]
+        [ValidateNotNullOrEmpty()]
+        [string]$Query,
+        [string]$FilterProp,
+        [string]$FilterVal
+    )
+
+    $WindowsInstaller = New-Object -ComObject WindowsInstaller.Installer    
+    try {
+        $MSIDatabase = $WindowsInstaller.OpenDatabase($FilePath,0)
+        If (!$MSIDatabase) {Write-Error "Unable to open MSI database $FilePath"}
+        $View = $MSIDatabase.OpenView($Query)
+        [void]$View.Execute()
+        $records = Get-RecordsFromView -View $View
+        If ($FilterProp -and $FilterVal) {$records = $records | Where-Object -Property $FilterProp -Like $FilterVal}
+        $records | Write-Output
+    }
+    catch {throw $Error[0]}
+
+    finally {
+        If ($View) {$View.Close()}
+        $View = $null
+        $MSIDatabase = $null
+        [System.Runtime.Interopservices.Marshal]::ReleaseComObject($WindowsInstaller) | Out-Null
+        [System.GC]::Collect()
+    }
+}
+
+Function Run-MSIInstall {
+    param(
+        [Parameter(Mandatory=$true)][string]$Target,
+        [string]$MSTfiles,
+        [string]$Location,
+		[string]$Params1,
+        [switch]$Uninstall
+    )
+      $Loc = $SRC
+       If ($Location) {$Loc = "$Location"}
+    @(
+        "----"            
+        "Action: MSI $(If ($Uninstall) {"Uninstall"} else {"Install"})"
+        "Target: $Target"
+    ) | WriteToLog
+    Try {
+        If ($Uninstall) {
+            foreach ($regkey in $UninstallRegKeys) {
+                If (Test-Path "$regkey\$Target") {$AppInfo = Get-ItemProperty "$regkey\$Target"}
+            }
+            If ($AppInfo) {
+                $APP_NAME = $AppInfo.DisplayName
+                $APP_VERSION = $AppInfo.DisplayVersion
+                @(
+                    "Product Code: $Target"
+                    "Application Name: $APP_NAME"
+                    "Application Version: $APP_VERSION"
+                ) | WriteToLog
+			If ($Params1) {
+                $Adv = "$Params1"
+				}
+                $Params = @(
+                    "/x $Target"
+                    "/qn /l*v ""$env:SystemRoot\Logs\$APP_NAME $APP_VERSION"+"_Uninstall.log"""
+                    "REBOOT=ReallySuppress"
+			$Adv
+                ) -join " "
+            } else {
+                $ExitCode = 0
+                $ErrMsg = "Software matching the target product code is not currently installed."
+            }
+        } else {
+            $AppInfo = Get-MSIinfo -FilePath "$Loc\$Target" -Query "SELECT * FROM Property"
+            $APP_NAME = ($AppInfo | ? {$_.Property -eq 'ProductName'}).Value
+            $APP_VERSION = ($AppInfo | ? {$_.Property -eq 'ProductVersion'}).Value
+            @(
+                "Product Code: $(($AppInfo | ? {$_.Property -eq 'ProductCode'}).Value)"
+                "Application Name: $APP_NAME"
+                "Application Version: $APP_VERSION"
+                "Location: $Loc"
+            ) | WriteToLog
+            If ($MSTfiles) {
+                $TransformString = "TRANSFORMS=""$MSTfiles"""
+            }
+			If ($Params1) {
+                $Adv = "$Params1"
+				}
+            $Params = @(
+                "/i ""$Target"""
+                "/qn /l*v ""$env:SystemRoot\Logs\$APP_NAME $APP_VERSION"+"_Install.log"""
+                "REBOOT=ReallySuppress"
+                $TransformString
+				$Adv
+            ) -join " "
+        }
+        If ($AppInfo) {
+            $Command = "msiexec.exe $Params"
+            $ExitCode = (Start-Process msiexec.exe -ArgumentList $Params -WorkingDirectory $Loc -Wait -NoNewWindow -PassThru).ExitCode
+        }
+    }
+    Catch {
+        $ExitCode = $Error[0].Exception.HResult
+        $ErrMsg = $Error[0].Exception.Message
+    }
+    Finally {
+        $Result = If (@(0,1641,3010) -contains $ExitCode) {
+            'SUCCESS'
+        } else {
+            'ERROR'
+        }
+
+        @(
+            "Command Executed: $Command"
+            "Result: $Result"
+            "Exit Code: $ExitCode"
+            "Error Message: $ErrMsg"
+        ) | WriteToLog
+        Write-Output $ExitCode
+	If ($Result -ne "SUCCESS") {Exit $ExitCode}
+    }
+}
+
+Function Run-InstallAction {
+    param(
+        [Parameter(Mandatory=$true)][string]$Target,
+        [string]$Params,
+        [string]$Location,
+        [string]$ValidationProductCode
+    )
+
+    @(
+        "----"            
+        "Action: Non-MSI Action"
+    ) | WriteToLog
+        $Loc = $SRC
+        If ($Location) {$Loc = "$Location"}
+    Try {
+        "Location: $Loc" | WriteToLog
+        "Command Executed: $Target $Params" | WriteToLog
+        If ($Params) {
+            $ExitCode = (Start-Process $Target -ArgumentList $Params -WorkingDirectory $Loc -Wait -NoNewWindow -PassThru).ExitCode
+        } else {
+            $ExitCode = (Start-Process $Target -WorkingDirectory $Loc -Wait -NoNewWindow -PassThru).ExitCode
+        }
+
+        If ($ValidationProductCode) {
+            foreach ($regkey in $UninstallRegKeys) {
+                If (Test-Path "$regkey\$ValidationProductCode") {$AppInfo = Get-ItemProperty "$regkey\$ValidationProductCode"}
+            }
+            If ($AppInfo) {
+                @(
+                    "Product Code: $ValidationProductCode"
+                    "Application Name: $($AppInfo.DisplayName)"
+                    "Application Version: $($AppInfo.DisplayVersion)"
+                ) | WriteToLog
+                $Result = "SUCCESS"
+            } else {
+                $ExitCode = 9999
+                $ErrMsg = "Software install could not be validated."
+            }
+        } else {
+            If (@(0,1641,3010) -contains $ExitCode) {$Result = 'SUCCESS'}
+        }
+    }
+    Catch {
+        $ExitCode = $Error[0].Exception.HResult
+        $ErrMsg = $Error[0].Exception.Message
+    }
+
+    Finally {
+        If ($Result -ne "SUCCESS") {$Result = "ERROR"}
+        @(
+            "Result: $Result"
+            "Exit Code: $ExitCode"
+            "Error Message: $ErrMsg"
+        ) | WriteToLog
+        Write-Output $ExitCode
+	If ($Result -ne "SUCCESS") {Exit $ExitCode}
+    }
+}
+
+#------------------------------[INITIALIZATION]----------------------------
+
+If (Test-Path $LogFile) {Remove-Item -Path $LogFile -Force}
+@(
+    "Device Name: $env:COMPUTERNAME"
+    "Operating System: $OSVer"
+    "System Architecture: $OSArchitecture"
+    "Source: $SRC"
+    "Package ID: $PKGID"
+) | WriteToLog
+
+#------------------------------[EXECUTION]---------------------------------
+$ErrorActionPreference= 'silentlycontinue'
+
+Stop-Service -Name "AgentServicePinPad" -Force -ErrorAction SilentlyContinue
+
+#------------------------------[DESINSTALACIÓN DE VERSIONES ANTERIORES]---------------------------------
+"--- INICIANDO DESINSTALACION DE VERSIONES PREVIAS ---" | WriteToLog
+
+foreach ($App in $ProductsToUninstall) {
+    "Procesando versión $($App.Version) con Product Code $($App.ProductCode)" | WriteToLog
+    $ExitCode = Run-MSIInstall -Target $App.ProductCode -Uninstall
+}
+
+Start-Sleep -Seconds 5
+
+#-------------------------------------------[Main package]----------------------------------------------
+$ExitCode = Run-MSIInstall -Target "PINPAD_01.00.05_00.msi"
+
+Start-Sleep -Seconds 5
+
+Start-Service -Name "AgentServicePinPad"
+
+Start-Sleep -Seconds 5
+     
+#------------------------------[EXIT CODE]-----------------------
+
+Exit $ExitCode
+
+#
