@@ -1,0 +1,16 @@
+Análisis Resumido de Anomalías Detectadas en los Logs
+Al procesar la muestra proporcionada de tus datos de pidstat, se identificaron los siguientes aspectos relevantes para incluir en la hoja de Resumen Ejecutivo:
+
+Saturación en Procesos de Seguridad y Telemetría (TaniumCX y falcon-sensor-b):
+
+TaniumCX (PID 410112) registra picos de hasta 101.0% de CPU, indicando que está consumiendo por completo al menos un core completo del servidor.
+
+falcon-sensor-b (PID 1167) mantiene picos constantes que van del 30% hasta el 70% de CPU, actuando como una carga de fondo pesada constante.
+
+Ráfagas Sincronizadas de Filtros de Red (nft y sed):
+
+Los procesos nft (PID 719715) y sed (PID 719714) consumen simultáneamente entre 59% y 99.5% de CPU durante ventanas de tiempo consecutivas. Esto suele estar relacionado con actualizaciones masivas en vivo de las tablas del firewall del Kernel (Illumio / nftables).
+
+Ejecución de Subprocesos Temporales:
+
+Se observan ejecuciones del comando TempUnix_139765 (PID 720597) generando picos de consumo de hasta 10.5% CPU, lo cual es un comportamiento típico de tareas programadas (cron jobs) o invocaciones dinámicas de scripts de mantenimiento.
