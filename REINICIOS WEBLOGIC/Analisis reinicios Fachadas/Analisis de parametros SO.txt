@@ -1,0 +1,67 @@
+1. Límite de threads/procesos por usuario del proceso de WebLogic (el más directo)
+
+En Linux, cada thread de Java es, a nivel de kernel, un proceso ligero (NPTL) — así que el límite que realmente importa es nproc (número de procesos/threads), no un límite "de threads" separado.
+
+bash
+# /etc/security/limits.conf (o un archivo en /etc/security/limits.d/)
+weblogic   soft   nproc    16384
+weblogic   hard   nproc    16384
+weblogic   soft   nofile   65536
+weblogic   hard   nofile   65536
+
+(nofile — descriptores de archivo — también es crítico aquí porque cada thread de tipo Connection evictor/pool HTTP mantiene sockets abiertos; un leak de threads casi siempre viene acompañado de un leak de file descriptors).
+
+Gotcha común: si WebLogic se arranca vía systemd, limits.conf no aplica salvo que el unit file lo referencie explícitamente — systemd tiene su propio mecanismo:
+
+ini
+# /etc/systemd/system/weblogic.service (o el drop-in correspondiente)
+[Service]
+LimitNPROC=16384
+LimitNOFILE=65536
+bash
+systemctl daemon-reload
+systemctl restart weblogic
+
+Si en cambio se arranca por un script init.d/NodeManager bajo un shell de login normal, confirma que /etc/pam.d/login (o el servicio correspondiente) tenga session required pam_limits.so, o los valores de limits.conf se ignoran silenciosamente.
+
+Cómo verificar el límite efectivo que está usando el proceso real (no lo que dice el archivo, sino lo que el kernel aplicó):
+
+bash
+cat /proc/<PID_del_java>/limits | grep -i "processes\|open files"
+2. Límite global del kernel (afecta a todo el sistema, no solo a WebLogic)
+bash
+# valor actual
+cat /proc/sys/kernel/threads-max
+cat /proc/sys/kernel/pid_max
+
+# ajuste (temporal)
+sysctl -w kernel.threads-max=200000
+sysctl -w kernel.pid_max=131072
+
+# permanente
+echo "kernel.threads-max = 200000" >> /etc/sysctl.d/99-weblogic.conf
+echo "kernel.pid_max = 131072"    >> /etc/sysctl.d/99-weblogic.conf
+sysctl -p /etc/sysctl.d/99-weblogic.conf
+
+pid_max importa porque cada thread consume un PID del espacio de numeración del kernel; con muchas JVMs corriendo en el mismo host (u otros procesos), es fácil agotarlo antes de llegar al límite de nproc del usuario.
+
+3. vm.max_map_count — relevante si el número de threads crece mucho
+
+Cada thread de Java reserva un stack (-Xss, típicamente 512KB–1MB) que se mapea como una región de memoria virtual separada (vía mmap). Si vm.max_map_count es bajo, la JVM puede fallar al crear nuevos threads (o incluso al hacer JIT/GC) aunque nproc tenga margen de sobra — es una causa menos conocida de OutOfMemoryError: unable to create new native thread en hosts con muchas JVMs.
+
+bash
+cat /proc/sys/vm/max_map_count
+sysctl -w vm.max_map_count=262144
+echo "vm.max_map_count = 262144" >> /etc/sysctl.d/99-weblogic.conf
+4. vm.overcommit_memory
+
+Si el host tiene memoria física ajustada y vm.overcommit_memory=2 (modo estricto), la reserva de stack para nuevos threads puede fallar aunque técnicamente haya threads/PIDs disponibles. Para hosts dedicados a WebLogic, el valor por defecto (0, heurístico) o 1 suele ser preferible; no lo cambies sin coordinarlo con el equipo de infraestructura, porque afecta a todos los procesos del host, no solo a la JVM.
+
+Resumen de prioridad
+Parámetro	Por qué importa aquí	Riesgo si está bajo
+nproc (limits.conf / systemd LimitNPROC)	Límite real de threads del proceso Java	OutOfMemoryError: unable to create native thread
+nofile (limits.conf / systemd LimitNOFILE)	Sockets/FDs que dejan abiertos los threads leaked	Too many open files, fallos de conexión
+kernel.threads-max / kernel.pid_max	Techo global del host, compartido entre todas las JVMs/apps colocadas	Falla a nivel de todo el servidor, no solo esta app
+vm.max_map_count	Mapas de memoria para stacks de threads	Falla creación de threads con nproc aún disponible
+
+Te recomendaría pedirle al equipo de infraestructura el output de cat /proc/<pid_java>/limits del managed server actual para saber qué tan cerca están de estos techos hoy — eso además serviría como otra señal para confirmar si el patrón de reinicios coincide con acercarse a alguno de estos límites antes de que WebLogic declare el server "unhealthy" por Stuck Threads.

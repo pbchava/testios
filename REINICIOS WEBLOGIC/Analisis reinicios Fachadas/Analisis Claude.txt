@@ -1,0 +1,45 @@
+# Resumen — Análisis de fuga de threads en JVM (pils / cops / mfa)
+
+## 1. Síntoma reportado
+Threads que no se liberan dentro de la JVM, provocando reinicios automáticos del application server (WebLogic). Se analizaron 3 thread dumps (M1, M2, M3) y el código fuente de los 3 proyectos facade: `ao_wl_pils_facade`, `ao-weblogic-cops-facade`, `ao-weblogic-mfa-facade`.
+
+## 2. Causa raíz identificada
+
+### 2.1 Evictor de conexiones duplicado (proyecto `mfa`)
+En `mfa/config/HttpClientConfig.java`, el bean `closeableHttpClient` combinaba **dos mecanismos de limpieza de conexiones inactivas al mismo tiempo**:
+
+- Un `Runnable` propio (`connectionPoolMonitor`) programado con `@Scheduled(fixedDelay = 10000)`.
+- Las llamadas nativas `.evictIdleConnections(...)` y `.evictExpiredConnections()` del builder de Apache HttpClient.
+
+Estas últimas crean internamente un thread daemon (`"Connection evictor"`) por cada `CloseableHttpClient` construido, que solo se detiene si se invoca `close()` sobre ese cliente específico. Si el bean llegara a reconstruirse (redeploy parcial del WAR, refresh de contexto, etc.) sin cerrar el cliente anterior, ese thread queda huérfano corriendo indefinidamente — patrón de fuga conocido y documentado de Apache HttpClient 4.x.
+
+**Evidencia:** los 3 thread dumps mostraban 5 threads `"Connection evictor"` activos de forma consistente. `pils` y `cops` no presentaban este patrón (nunca usaron `.evictIdleConnections()`), lo que confirma que el defecto es específico de la plantilla usada en `mfa` (y probablemente replicado en otros facades del mismo dominio no auditados: `bnp`, `cecoban`, `edelivery`, `etb`, `ntb`, `pd-sso`, `pyme-sso`, `sss`, `suc-sso`).
+
+### 2.2 Modelo de despliegue (agrava el impacto del punto anterior)
+Los 3 proyectos se despliegan como **WAR tradicional sobre WebLogic** (`AoPilsApplication`, `AoCopsApplication`, `AoMfaApplication` extienden `SpringBootServletInitializer`). Un thread daemon huérfano hereda el classloader del WAR en el momento de su creación; si un redeploy no es completamente limpio (sin bounce del managed server), ese thread —y el classloader completo del WAR anterior— queda retenido en memoria. Es el clásico *classloader leak* de WebLogic, y explica por qué el problema se manifiesta como acumulación de threads tras despliegues repetidos.
+
+### 2.3 Riesgo secundario: agotamiento del pool de conexiones
+Los tres proyectos ya traían instrumentación propia (`"⚠️ POOL SATURADO"`, `"⚠️ POOL AL 80% de uso"`), señal de que el equipo ya sospechaba saturación del pool HTTP. Si `connectionRequestTimeout` está mal configurado (valor 0 o muy alto) en la tabla de parámetros de BD, un `ExecuteThread` de WebLogic puede quedar bloqueado indefinidamente esperando una conexión, en vez de fallar rápido — esto puede derivar en **Stuck Thread** y disparar el reinicio automático del servidor. *Pendiente de validar valores reales con el equipo de parametrización.*
+
+### 2.4 Descartado como causa
+- No hay `new Thread()`, `ExecutorService` manual, loops de retry ni bloqueos de negocio en los 3 proyectos.
+- Los `TaskScheduler` propios (`pils-pool-1`, `cops-pool-1`, `mfa-pool-1`) están correctamente configurados (1 thread cada uno, sin duplicación).
+- El datasource JDBC es JNDI (`jdbc/HERA_DS`), administrado y pooleado por WebLogic — no es fuente de threads.
+- Los ~18 threads `Timer-N` y los 16 `spring.cloud.inetutils` corresponden a infraestructura de WebLogic y a `spring-cloud-starter-sleuth`/`spring-cloud-commons` respectivamente — ruido normal de una JVM con ~12 apps coexistiendo, no evidencia de fuga.
+- `CacheConfig` (Caffeine, `mfa`) y los `*FacadeConfig` no crean threads adicionales.
+
+## 3. Cambios de código entregados
+
+| Proyecto | Archivo | Cambio |
+|---|---|---|
+| `mfa` | `HttpClientConfig.java` | Se eliminaron `.evictIdleConnections()`/`.evictExpiredConnections()` del builder (queda un solo mecanismo de limpieza: el `connectionPoolMonitor` `@Scheduled`). `connectionManager()` ya no retorna `null` ante fallo de SSL, ahora falla rápido con excepción. Se agregó `implements DisposableBean` con cierre explícito del `CloseableHttpClient`/`PoolingHttpClientConnectionManager`. |
+| `pils` | `HttpClientConfig.java` | Sin cambios de lógica (no tenía el defecto del evictor duplicado). Se agregó `implements DisposableBean` con cierre explícito de recursos, por consistencia y robustez ante redeploys. |
+| `cops` | `HttpClientConfig.java` | Igual que `pils`: solo se agregó `implements DisposableBean` con cierre explícito de recursos. |
+
+## 4. Pendientes / recomendaciones no aplicadas aún (requieren acción fuera del código de estos 3 proyectos)
+
+1. **Auditar el resto de facades del dominio** (`bnp`, `cecoban`, `edelivery`, `etb`, `ntb`, `pd-sso`, `pyme-sso`, `sss`, `suc-sso`) por si replican la misma plantilla defectuosa de `HttpClientConfig` que tenía `mfa`.
+2. **Validar con operaciones** si los redeploys de estas apps en WebLogic incluyen bounce completo del managed server o son hot-redeploys parciales; mientras no haya certeza, se recomienda exigir bounce completo en cada release.
+3. **Confirmar valores de `connectTimeout` / `connectionRequestTimeout` / `socketTimeout` / `maxTotal`** en la tabla de parámetros de BD para los 3 proyectos, y ajustarlos a valores finitos y acordes al tráfico real.
+4. **Capturar thread dumps bajo carga alta** (no en reposo, como los analizados) espaciados 5–10 min, para confirmar empíricamente si el conteo de `ExecuteThread` bloqueados crece con el tiempo.
+5. **Revisar logs de WebLogic** (`AdminServer.log`/`.out`) en el momento exacto de los reinicios buscando el mensaje `"has been busy for X seconds"` para confirmar o descartar Stuck Thread como disparador directo del auto-restart.

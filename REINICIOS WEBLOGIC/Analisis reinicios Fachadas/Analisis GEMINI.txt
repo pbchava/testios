@@ -1,0 +1,35 @@
+Puntos CRÍTICOS pendientes que DEBES revisar en el resto del código:
+1. Invocación / Creación de Clientes en PilsTemplateFactory y PilsFacadeConfig
+Riesgo: Si en estas clases o en el código que consume el servicio Web/REST se ejecuta new RestTemplate() o se crea una nueva instancia de CloseableHttpClient de forma local dentro de los métodos del DAO o del Controller por cada petición entrante, los cambios de HttpClientConfig.java quedarán anulados.
+
+Acción: Asegúrate de que PilsTemplateFactory o PilsFacadeConfig inyecten mediante @Autowired la instancia Singleton de CloseableHttpClient creada en HttpClientConfig y que no instancien clientes manualmente por transacción.
+
+2. Limpieza de Contexto en ApplicationIdFilter.java
+Riesgo: Los servidores de aplicaciones reutilizan los hilos del pool web (HTTP Worker Threads). Si este filtro coloca información en variables ThreadLocal y no se limpian al finalizar el hilo, los hilos quedarán retenidos impidiendo la recolección de basura (GC).
+
+Acción: Garantiza que en ApplicationIdFilter.java exista una sentencia de limpieza dentro de un bloque finally:
+
+Java
+try {
+    chain.doFilter(request, response);
+} finally {
+    // OBLIGATORIO: Limpiar cualquier ThreadLocal o MDC utilizado
+    UserContextHolder.clear(); 
+    MDC.clear();
+}
+3. Reutilización de JAXBContext en la capa de Marshalling/Unmarshalling (generate/add / generate/get)
+Riesgo: Si durante la transformación XML/SOAP a objetos DTO se realiza JAXBContext.newInstance(...) dentro de los métodos del servicio en cada petición, la sobrecarga de la JVM disparará el consumo de memoria y puede delegar trabajo a pools internos de hilos.
+
+Acción: El JAXBContext debe ser estático y reutilizable (private static final JAXBContext CONTEXT = ...) o estar registrado como un Bean de Spring Singleton.
+
+4. Cierre de Conexiones JDBC en PilsRepository.java y Querys.java
+Riesgo: Si hay consultas JDBC directas que no utilizan JdbcTemplate o no se cierran dentro de un try-with-resources, el hilo que atiende la petición quedará atascado en estado de lectura de socket (SocketRead) esperando respuesta de la base de datos hasta agotar el pool de conexiones.
+
+Acción: Verifica que todas las aperturas de conexiones, PreparedStatement y ResultSet se encuentren envueltas en un bloque try-with-resources:
+
+Java
+try (Connection conn = dataSource.getConnection();
+     PreparedStatement ps = conn.prepareStatement(query);
+     ResultSet rs = ps.executeQuery()) {
+    // Procesamiento de datos
+}
