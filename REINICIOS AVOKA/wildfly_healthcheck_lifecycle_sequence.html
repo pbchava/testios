@@ -1,0 +1,89 @@
+<h2 class="sr-only">Diagrama de secuencia del ciclo de vida del WAR healthcheck: deploy, muestreo continuo de CPU/memoria, atencion de peticiones de health check y undeploy.</h2>
+<div id="seq"></div>
+<script type="module">
+import mermaid from 'https://esm.sh/mermaid@11/dist/mermaid.esm.min.mjs';
+const themeMode = document.documentElement.dataset.mode;
+const dark = themeMode ? themeMode === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+await document.fonts.ready;
+
+const colors = dark ? {
+  actorBkg: '#3C3489', actorBorder: '#AFA9EC', actorTextColor: '#EEEDFE',
+  actorLineColor: '#888780',
+  signalColor: '#D3D1C7', signalTextColor: '#F1EFE8',
+  labelBoxBkgColor: '#085041', labelBoxBorderColor: '#5DCAA5', labelTextColor: '#E1F5EE',
+  loopTextColor: '#D3D1C7',
+  noteBkgColor: '#633806', noteBorderColor: '#FAC775', noteTextColor: '#FAEEDA',
+  activationBkgColor: '#0F6E56', activationBorderColor: '#5DCAA5',
+  sequenceNumberColor: '#2C2C2A'
+} : {
+  actorBkg: '#EEEDFE', actorBorder: '#534AB7', actorTextColor: '#26215C',
+  actorLineColor: '#B4B2A9',
+  signalColor: '#444441', signalTextColor: '#2C2C2A',
+  labelBoxBkgColor: '#E1F5EE', labelBoxBorderColor: '#0F6E56', labelTextColor: '#04342C',
+  loopTextColor: '#444441',
+  noteBkgColor: '#FAEEDA', noteBorderColor: '#BA7517', noteTextColor: '#412402',
+  activationBkgColor: '#9FE1CB', activationBorderColor: '#0F6E56',
+  sequenceNumberColor: '#FFFFFF'
+};
+
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'base',
+  fontFamily: '"anthropic-sans", sans-serif',
+  themeVariables: {
+    darkMode: dark,
+    fontFamily: '"anthropic-sans", sans-serif',
+    actorFontSize: '14px',
+    actorFontWeight: '500',
+    messageFontSize: '13px',
+    noteFontSize: '13px',
+    ...colors
+  },
+  sequence: {
+    wrap: true,
+    mirrorActors: false,
+    actorMargin: 60,
+    boxMargin: 12,
+    messageMargin: 40,
+    noteMargin: 12,
+    height: 44
+  }
+});
+
+const diagram = `sequenceDiagram
+    participant Admin as Administrador / CI-CD
+    participant WF as WildFly
+    participant LC as ApplicationLifecycle
+    participant RM as ResourceMonitor
+    participant JVM as MXBeans CPU/Memoria
+    participant HC as HealthCheckResource
+    participant LB as Monitor externo / LB
+
+    Admin->>WF: Deploy healthcheck.war
+    WF->>LC: contextInitialized()
+    LC->>RM: start()
+    activate RM
+    RM->>RM: crea scheduler (hilo daemon)
+
+    loop Cada intervalo configurable (default 1s)
+        RM->>JVM: leer CPU y heap
+        JVM-->>RM: cpu%, memoria%
+        RM->>RM: actualiza historial 5 min y breach timers
+        RM->>RM: publica HealthSnapshot
+    end
+
+    Note over LB,HC: En cualquier momento, en paralelo al muestreo
+    LB->>HC: GET /api/health
+    HC->>RM: getCurrentSnapshot()
+    RM-->>HC: HealthSnapshot O(1)
+    HC-->>LB: 200 OK o 500
+
+    Admin->>WF: Undeploy / shutdown
+    WF->>LC: contextDestroyed()
+    LC->>RM: stop()
+    RM->>RM: scheduler.shutdownNow()
+    deactivate RM`;
+
+const { svg } = await mermaid.render('seq-svg', diagram);
+document.getElementById('seq').innerHTML = svg;
+</script>

@@ -1,0 +1,98 @@
+<h2 class="sr-only">Diagrama de clases del WAR healthcheck: paquetes rest y monitor, sus atributos, metodos y relaciones.</h2>
+<div id="cls"></div>
+<script type="module">
+import mermaid from 'https://esm.sh/mermaid@11/dist/mermaid.esm.min.mjs';
+const themeMode = document.documentElement.dataset.mode;
+const dark = themeMode ? themeMode === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+await document.fonts.ready;
+
+const colors = dark ? {
+  primaryColor: '#3C3489', primaryTextColor: '#EEEDFE', primaryBorderColor: '#AFA9EC',
+  lineColor: '#9c9a92', textColor: '#D3D1C7', classText: '#EEEDFE'
+} : {
+  primaryColor: '#EEEDFE', primaryTextColor: '#26215C', primaryBorderColor: '#534AB7',
+  lineColor: '#73726c', textColor: '#2C2C2A', classText: '#26215C'
+};
+
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'base',
+  fontFamily: '"anthropic-sans", sans-serif',
+  themeVariables: {
+    darkMode: dark,
+    fontSize: '13px',
+    fontFamily: '"anthropic-sans", sans-serif',
+    ...colors
+  }
+});
+
+const diagram = `classDiagram
+    class JaxRsActivator {
+        <<Application>>
+        paquete rest
+    }
+    class HealthCheckResource {
+        <<Path /health>>
+        paquete rest
+        +healthCheck() Response
+    }
+    class MetricsResource {
+        <<Path /health/metrics>>
+        paquete rest
+        +metrics() Response
+    }
+    class HealthCheckApplicationLifecycle {
+        <<WebListener>>
+        paquete monitor
+        +contextInitialized(evt) void
+        +contextDestroyed(evt) void
+    }
+    class ResourceMonitor {
+        <<ApplicationScoped>>
+        paquete monitor
+        -currentSnapshot AtomicReference
+        -history ConcurrentLinkedDeque
+        -cpuBreachStartMillis long
+        -memoryBreachStartMillis long
+        +start() void
+        +stop() void
+        +getCurrentSnapshot() HealthSnapshot
+        +getRecentHistory() List
+    }
+    class HealthMonitorConfig {
+        <<utility, static>>
+        paquete monitor
+        +SAMPLE_INTERVAL_MS long
+        +DEGRADATION_SECONDS long
+        +RETENTION_SECONDS long
+        +CPU_THRESHOLD_PERCENT double
+        +MEMORY_THRESHOLD_PERCENT double
+    }
+    class ResourceMetricsSample {
+        <<inmutable>>
+        paquete monitor
+        -timestampMillis long
+        -cpuPercent double
+        -memoryPercent double
+    }
+    class HealthSnapshot {
+        <<inmutable>>
+        paquete monitor
+        -healthy boolean
+        -cpuPercent double
+        -memoryPercent double
+        -cpuDegraded boolean
+        -memoryDegraded boolean
+        +initialUp() HealthSnapshot$
+    }
+
+    HealthCheckResource ..> ResourceMonitor : inyecta
+    MetricsResource ..> ResourceMonitor : inyecta
+    HealthCheckApplicationLifecycle ..> ResourceMonitor : inicia/detiene
+    ResourceMonitor ..> HealthMonitorConfig : lee config
+    ResourceMonitor --> HealthSnapshot : publica
+    ResourceMonitor o-- ResourceMetricsSample : historial 0..*`;
+
+const { svg } = await mermaid.render('cls-svg', diagram);
+document.getElementById('cls').innerHTML = svg;
+</script>
