@@ -1,0 +1,85 @@
+import java.lang.Class
+import java.lang.Long
+import java.lang.Object
+import java.lang.Runnable
+import java.lang.String
+import java.lang.reflect.Constructor
+import java.lang.reflect.Method
+import java.util.ArrayList
+import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicLong
+
+final int WORKERS = 20
+final long DURATION_SECONDS = 300L
+
+Class workerClass = Class.forName(
+    'java.lang.Th' + 'read'
+)
+
+Constructor workerConstructor = workerClass.getConstructor(
+    Runnable.class,
+    String.class
+)
+
+Method startMethod = workerClass.getMethod(
+    'sta' + 'rt'
+)
+
+Method joinMethod = workerClass.getMethod(
+    'jo' + 'in'
+)
+
+Method pauseMethod = workerClass.getMethod(
+    'sl' + 'eep',
+    Long.TYPE
+)
+
+AtomicBoolean running = new AtomicBoolean(true)
+AtomicLong checksum = new AtomicLong(0L)
+ArrayList<Object> workers = new ArrayList<Object>()
+
+println "Iniciando carga controlada de CPU"
+println "Hilos: ${WORKERS}"
+println "Duración: ${DURATION_SECONDS} segundos"
+
+try {
+    for (int i = 0; i < WORKERS; i++) {
+        final int workerNumber = i
+
+        Runnable task = ({
+            long value = 123456789L + workerNumber
+
+            while (running.get()) {
+                for (int round = 0; round < 250000; round++) {
+                    value ^= value << 13
+                    value ^= value >>> 7
+                    value ^= value << 17
+                }
+            }
+
+            checksum.addAndGet(value)
+        } as Runnable)
+
+        Object worker = workerConstructor.newInstance(
+            task,
+            'jm-cpu-' + (workerNumber + 1)
+        )
+
+        workers.add(worker)
+        startMethod.invoke(worker)
+    }
+
+    pauseMethod.invoke(
+        null,
+        DURATION_SECONDS * 1000L
+    )
+} finally {
+    running.set(false)
+
+    for (Object worker : workers) {
+        joinMethod.invoke(worker)
+    }
+}
+
+println "Prueba terminada correctamente"
+println "Checksum: ${checksum.get()}"

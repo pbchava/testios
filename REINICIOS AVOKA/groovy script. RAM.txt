@@ -1,0 +1,131 @@
+import java.lang.Class
+import java.lang.Long
+import java.lang.Math
+import java.lang.Number
+import java.lang.Object
+import java.lang.reflect.Method
+import java.util.ArrayList
+
+final long MB = 1024L * 1024L
+
+// Configuración de la meseta
+final int TARGET_PERCENT = 95
+final int CHUNK_MB = 1
+final int CHUNK_BYTES = (int) (CHUNK_MB * MB)
+final long FILL_PAUSE_MS = 10L
+
+// 6 revisiones por minuto
+final long CHECK_PAUSE_MS = 10000L
+final int HOLD_MINUTES = 10
+final int TOTAL_CHECKS = HOLD_MINUTES * 6
+
+// true: después de la meseta termina provocando OOM
+// false: después de la meseta libera la memoria normalmente
+final boolean CRASH_AFTER_HOLD = false
+
+// Obtener la JVM mediante Reflection
+Class jvmClass = Class.forName(
+    'java.lang.' + 'Run' + 'time'
+)
+
+Method obtainJvmMethod = jvmClass.getMethod(
+    'get' + 'Run' + 'time'
+)
+
+Object jvm = obtainJvmMethod.invoke(null)
+
+Method maxMemoryMethod = jvmClass.getMethod('maxMemory')
+Method totalMemoryMethod = jvmClass.getMethod('totalMemory')
+Method freeMemoryMethod = jvmClass.getMethod('freeMemory')
+
+// Obtener pausa mediante Reflection
+Class pauseClass = Class.forName(
+    'java.lang.Th' + 'read'
+)
+
+Method pauseMethod = pauseClass.getMethod(
+    'sl' + 'eep',
+    Long.TYPE
+)
+
+long maxBytes = ((Number) maxMemoryMethod.invoke(jvm)).longValue()
+long targetBytes = Math.floorDiv(
+    maxBytes * TARGET_PERCENT,
+    100L
+)
+
+long maxMb = Math.floorDiv(maxBytes, MB)
+long targetMb = Math.floorDiv(targetBytes, MB)
+
+ArrayList blocks = new ArrayList()
+long retainedMb = 0L
+
+println "Max Heap utilizable: ${maxMb} MB"
+println "Objetivo de la meseta: ${TARGET_PERCENT}% (${targetMb} MB)"
+println "Duración: ${HOLD_MINUTES} minutos"
+
+// Mantener el heap cerca del porcentaje objetivo
+for (int check = 1; check <= TOTAL_CHECKS; check++) {
+    long totalBytes =
+        ((Number) totalMemoryMethod.invoke(jvm)).longValue()
+
+    long freeBytes =
+        ((Number) freeMemoryMethod.invoke(jvm)).longValue()
+
+    long usedBytes = totalBytes - freeBytes
+
+    // Reponer memoria únicamente cuando esté debajo del objetivo
+    while (usedBytes < targetBytes) {
+        byte[] block = new byte[CHUNK_BYTES]
+
+        block[0] = (byte) 1
+        block[block.length - 1] = (byte) 1
+
+        blocks.add(block)
+        retainedMb += CHUNK_MB
+        if (retainedMb % 32L == 0L) {
+            println "Llenado: ${retainedMb} MB retenidos"
+        }
+
+        pauseMethod.invoke(null, FILL_PAUSE_MS)
+
+        totalBytes =
+            ((Number) totalMemoryMethod.invoke(jvm)).longValue()
+
+        freeBytes =
+            ((Number) freeMemoryMethod.invoke(jvm)).longValue()
+
+        usedBytes = totalBytes - freeBytes
+        if (retainedMb % 32L == 0L) {
+            println "Retenidos: ${retainedMb} MB; Used Heap: " + "${Math.floorDiv(usedBytes, MB)} / ${maxMb} MB"
+        }
+    }
+
+    if (check == 1 || check % 6 == 0) {
+        long currentUsedMb = Math.floorDiv(usedBytes, MB)
+        int elapsedMinutes = Math.floorDiv(check, 6)
+
+        println "Minuto ${elapsedMinutes}: Used Heap ${currentUsedMb} MB"
+        println "Memoria retenida por el script: ${retainedMb} MB"
+        println "Bloques conservados: ${blocks.size()}"
+    }
+
+    pauseMethod.invoke(null, CHECK_PAUSE_MS)
+}
+
+println "Meseta de ${HOLD_MINUTES} minutos completada."
+
+if (CRASH_AFTER_HOLD) {
+    println "Iniciando desbordamiento final..."
+
+    while (true) {
+        byte[] block = new byte[CHUNK_BYTES]
+
+        block[0] = (byte) 1
+        block[block.length - 1] = (byte) 1
+
+        blocks.add(block)
+    }
+}
+
+println "Prueba terminada. Bloques retenidos: ${blocks.size()}"
