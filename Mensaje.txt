@@ -1,0 +1,5 @@
+Hola Arnoldo,
+
+Por diseño técnico de la solución, los controles de autenticación y seguridad se encuentran implementados exclusivamente a nivel de Apigee, siendo este el punto único de entrada previsto para el consumo de las APIs.
+
+Me parece que esta situación amerita evaluar en conjunto con los equipo de infraestructura evaluar para asegurar que no se pueda omitir el gateway, sugerimos revisar la implementación de un control de enlace entre Apigee y OSE mediante Mutual TLS (mTLS) y evitar que acepte tráfico que provenga desde cualquier otra fuente que no sea Apigee.
