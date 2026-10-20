@@ -1,0 +1,2989 @@
+
+================================================================================
+// ARCHIVO: META-INF/MANIFEST.MF
+================================================================================
+
+Manifest-Version: 1.0
+Application-Name: AO
+Archiver-Version: Plexus Archiver
+Permissions: all-permissions
+Caller-Allowable-Codebase: *
+Trusted-Library: true
+Trusted-Only: true
+Codebase: *
+Application-Library-Allowable-Codebase: *
+Build-Jdk: 1.8.0_181
+Created-By: Apache Maven 3.2.5
+
+Name: bmx/io/devices/DeviceDiagnostics.class
+SHA-256-Digest: GkPLHwFy5BDt3u1vpfxdd4oE1uZp5eRF3aJvND9ZmXM=
+
+Name: org/apache/commons/codec/StringEncoderComparator.class
+SHA-256-Digest: wi90mWMYBh7wZrIdcOjPk9HUc15W0Ka9R148/BvLGZM=
+
+Name: bmx/io/utils/BlackPixelAreaDetector.class
+SHA-256-Digest: BP/D5MqChsLPfW706YhRZ5ezbqf1eu6zg/jFu5zZspU=
+
+Name: org/apache/commons/codec/BinaryDecoder.class
+SHA-256-Digest: S7XuY7mbAm890AGzea3cvbqjqieVbleM+ze4XbDvGgo=
+
+Name: org/apache/commons/codec/binary/Base32OutputStream.class
+SHA-256-Digest: lhpKt57lTNayK3Wm8z9iJIkqR6lEr3OETLdKZ26EiYc=
+
+Name: org/apache/commons/codec/binary/BinaryCodec.class
+SHA-256-Digest: XYQyJaysLcKQho4RLILikDj9ncREs2Cqub/bGjdB4k4=
+
+Name: org/apache/commons/codec/Decoder.class
+SHA-256-Digest: G+jTLC/IlHd3w7dxMLvmoGshTen5s03JQfQ51L70ItY=
+
+Name: org/apache/commons/codec/binary/Base64.class
+SHA-256-Digest: VcloETt9kIVdGyu3iD5wgsDDNUjfNaoTEoRYLT9BelI=
+
+Name: org/apache/commons/codec/binary/CharSequenceUtils.class
+SHA-256-Digest: l2WNaanxXIwFc4YhOIvJiVdQeHmVBPl9GUmBOoEEJ3E=
+
+Name: bmx/io/devices/SignPadDeviceV2.class
+SHA-256-Digest: ChMBhhqRH5w1fOIDk/nDJTgGSOyXJB7KlXvLQZCI5vI=
+
+Name: bmx/io/utils/BlackWhiteCropper.class
+SHA-256-Digest: MmQsUGQ8+F9zVKn1UMHwbc1YGV7Oa2XA7TL4J7Jwaak=
+
+Name: org/apache/commons/codec/binary/Base64InputStream.class
+SHA-256-Digest: U8OgwwSzv6iK7Ap4/XbM2/E83XhFodEK6oQE7p/sVJ8=
+
+Name: org/apache/commons/codec/binary/Hex.class
+SHA-256-Digest: fmwP87T6mkqoAyvtoL0XDxDaBTC8jRtKhvUC3tAbiH0=
+
+Name: org/apache/commons/codec/binary/a.class
+SHA-256-Digest: HwLAxhS2ZyURmxADAFIMlP6KoG7qySEgSimk48ATpeY=
+
+Name: bmx/io/utils/DLLDiagnostics.class
+SHA-256-Digest: a1EKliYqeHSkaUP2S7ILaAXrd5tFyCY8N+OWET0imtI=
+
+Name: org/apache/commons/codec/binary/StringUtils.class
+SHA-256-Digest: IPLd1FvfeW7sTyQxRA9Bb91s8gxL1Y0oF+HzT7W2zR8=
+
+Name: bmx/io/devices/ScannerDevice.class
+SHA-256-Digest: BzlJ0PhV9nx0B1cP+zQ4Lco7TEWuMKONTgbnSK85nD0=
+
+Name: org/apache/commons/codec/binary/BaseNCodecOutputStream.class
+SHA-256-Digest: iQpxYvGpqeRsPdkYO0fCbjjwhAwlJsXMZR5NirGGyxY=
+
+Name: org/apache/commons/codec/CharEncoding.class
+SHA-256-Digest: G/Tmp1G0MaMZb+9o6XEETuHT6cf/agR3/eAmPVlDghM=
+
+Name: org/apache/commons/codec/Charsets.class
+SHA-256-Digest: f8PwaS4No2r8XxO3ZQRbvDKNPNXdX4+zqgNGMwdKhHs=
+
+Name: bmx/io/utils/CropAreaDetector.class
+SHA-256-Digest: pITCOYnjhHO/DuOEoih5AutjznJmvKjf85AQu78D5Ig=
+
+Name: org/apache/commons/codec/binary/BaseNCodecInputStream.class
+SHA-256-Digest: /4MONNi0JE4ZmBBiG5P1QVEVr2E9L2s+yUV8ZBhvl6E=
+
+Name: org/apache/commons/codec/DecoderException.class
+SHA-256-Digest: wtK/tnxdEURnPIRNFf8FaIGOWeHZQDbC/jkYcVAPgmQ=
+
+Name: bmx/io/utils/Cropper.class
+SHA-256-Digest: 90Qj9odMwP13zuG2njeDxBGbSvQwLocfv0g1Ljxti48=
+
+Name: org/apache/commons/codec/binary/Base64OutputStream.class
+SHA-256-Digest: ilgJziuw7vzjOH4lXekEPE6KSorFymZTq3Y3lA/wgDg=
+
+Name: net/javajeff/jtwain/JTwain.class
+SHA-256-Digest: ZFG3aDwSor/MUIGKRJ4Iuzah7Sa9rJuv6nV0iOkbN5o=
+
+Name: org/apache/commons/codec/EncoderException.class
+SHA-256-Digest: S5NWYC1TxhcJ4UyhsFNro0FGfT9SYJuwuNIQ97N9HnI=
+
+Name: net/javajeff/jtwain/JTwainException.class
+SHA-256-Digest: EaLXdEksnyK7hlIBIlNUVs0ckS3N2h24xoz4IDYVnKQ=
+
+Name: org/apache/commons/codec/binary/Base32.class
+SHA-256-Digest: iudFdUdXw+ZPiSzaiPrZODGMH5qmSFWyAvgLBvDKZJg=
+
+Name: org/apache/commons/codec/StringDecoder.class
+SHA-256-Digest: qzvKc6RAR7gOUGi8Bs86mzIkwGdJsfhWKeTpoCs0jHU=
+
+Name: bmx/io/devices/PixelType.class
+SHA-256-Digest: BNYK73p8jQZCM/srlBqD1EvKJ5mmn7oezEdkK7U7M9A=
+
+Name: META-INF/maven/bmx-io/io-commons/pom.xml
+SHA-256-Digest: rxrC9QwbDpn9ALUVlNgnWAQRxxJuTiUgSfAxmQynEZY=
+
+Name: org/apache/commons/codec/BinaryEncoder.class
+SHA-256-Digest: h/sN5qNl4ndtcCLfoiCq8w2wZc2VsAG4Y7bazsYhWlg=
+
+Name: net/javajeff/jtwain/UnsupportedCapabilityException.class
+SHA-256-Digest: vF7O1y0E7LNAfP1U9Aa8BZGQYUvuRPvrs4TYOdIWV9g=
+
+Name: org/apache/commons/codec/binary/BaseNCodec.class
+SHA-256-Digest: HXN7534MVqUWb/98mzXHQXCO0ujEQXAGUiGxH53jv3w=
+
+Name: bmx/io/devices/SignPadDevice.class
+SHA-256-Digest: 7TXJkJz1AaFnIApLe8QLDdfKJrK98+Se+QSuAgd/PzA=
+
+Name: bmx/io/scanner/applet/ScannerApplet.class
+SHA-256-Digest: xJAn1uVjnJAvG8IFUfqCBDqnBRWjtx3ZFZojQ2Sy76M=
+
+Name: bmx/io/devices/ScannerDeviceV2.class
+SHA-256-Digest: Bv0CYbdTY1Qxza3LyHT8IHK7qLZ8Y3ARMrfcJ1KfBxI=
+
+Name: bmx/io/scanner/Scanner.class
+SHA-256-Digest: ExeZGwaNRcneN7dK7pvviOZzwOK7XrSabUHIRPv3HXM=
+
+Name: org/apache/commons/codec/Encoder.class
+SHA-256-Digest: xyYe01UxxVIIDTg1PCQ8qBCxqey9y9xrsl5+5UE/SIA=
+
+Name: bmx/io/utils/ImageUtil.class
+SHA-256-Digest: njYnm86yggJV5V2UGAmWjTkkLV4imAjZ7CZ6+zMR5I4=
+
+Name: org/apache/commons/codec/StringEncoder.class
+SHA-256-Digest: mhcgrl6D8oxn+GbvV/AO4Wa7LBoyInXt2gXLSrw5uaY=
+
+Name: META-INF/maven/bmx-io/scanner/pom.properties
+SHA-256-Digest: Gj8XmcUUj4iOcPNNZ11wamBvJwvE5RmWUnOnal3ApEM=
+
+Name: META-INF/maven/bmx-io/scanner/pom.xml
+SHA-256-Digest: aXneULqNMDU3aTNtgi4zQSYEBLXowDhu/BubkxWWTxk=
+
+Name: META-INF/maven/bmx-io/io-commons/pom.properties
+SHA-256-Digest: QzMYS1RvLSNdsp+dCilsQz/3FZO8vVkeQRYpYMnyFQk=
+
+Name: org/apache/commons/codec/binary/Base32InputStream.class
+SHA-256-Digest: 55IHRj0ZrSfork0TNv+Ug9yKJRSxlr2uObkkj7ay0HI=
+
+
+
+================================================================================
+// ARCHIVO: META-INF/maven/bmx-io/io-commons/pom.properties
+================================================================================
+
+#Generated by Apache Maven
+#Thu Sep 14 23:08:16 CDT 2017
+version=1.0
+groupId=bmx-io
+artifactId=io-commons
+
+
+================================================================================
+// ARCHIVO: META-INF/maven/bmx-io/io-commons/pom.xml
+================================================================================
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <artifactId>io-devices</artifactId>
+    <groupId>bmx-io</groupId>
+    <version>1.0</version>
+  </parent>
+
+  <artifactId>io-commons</artifactId>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
+
+================================================================================
+// ARCHIVO: META-INF/maven/bmx-io/scanner/pom.properties
+================================================================================
+
+#Generated by Apache Maven
+#Thu Sep 06 13:19:26 CDT 2018
+version=1.0.0
+groupId=bmx-io
+artifactId=scanner
+
+
+================================================================================
+// ARCHIVO: META-INF/maven/bmx-io/scanner/pom.xml
+================================================================================
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>bmx-io</groupId>
+    <artifactId>io-devices</artifactId>
+    <version>1.0</version>
+  </parent>
+
+  <artifactId>scanner</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+
+  <description>scanner device applet bridge</description>
+
+  <dependencies>
+    <dependency>
+      <groupId>bmx-io</groupId>
+      <artifactId>io-commons</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.10</version>
+    </dependency>
+    <dependency>
+      <groupId>sun.java</groupId>
+      <artifactId>java-plugin</artifactId>
+      <version>1.6.0_45</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>2.4.2</version>
+        <configuration>
+          <filters>
+            <filter>
+              <artifact>commons-codec:commons-codec</artifact>
+              <includes>
+                <include>org/apache/commons/codec/binary/*</include>
+                <include>org/apache/commons/codec/*</include>
+              </includes>
+            </filter>
+          </filters>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
+
+
+================================================================================
+// ARCHIVO: bmx/io/devices/DeviceDiagnostics.java
+================================================================================
+
+package bmx.io.devices;
+
+public interface DeviceDiagnostics {
+   String[] getDLLSearchPaths();
+
+   boolean dependentDLLsFound();
+
+   String[] getDependentDLLPaths();
+
+   boolean isDeviceReady();
+}
+
+
+================================================================================
+// ARCHIVO: bmx/io/devices/PixelType.java
+================================================================================
+
+package bmx.io.devices;
+
+public enum PixelType {
+   BLACK_WHITE(0),
+   GRAY(1),
+   RGB(2),
+   PALETTE(3);
+
+   public final int code;
+
+   private PixelType(int var3) {
+      this.code = var3;
+   }
+
+   public static PixelType byCode(int var0) {
+      PixelType[] var1;
+      int var2 = (var1 = values()).length;
+
+      for(int var3 = 0; var3 < var2; ++var3) {
+         PixelType var4;
+         if ((var4 = var1[var3]).code == var0) {
+            return var4;
+         }
+      }
+
+      throw new IllegalArgumentException("no such pixel type");
+   }
+}
+
+
+================================================================================
+// ARCHIVO: bmx/io/devices/ScannerDevice.java
+================================================================================
+
+package bmx.io.devices;
+
+public interface ScannerDevice {
+   String getStatus();
+
+   void selectSource();
+
+   String asignarImagen();
+
+   String getImgFinal();
+
+   String getImgFinalThumbnail();
+
+   String getImgFinalMedium();
+
+   String getFullImgFinal();
+
+   String getSizeImg();
+
+   String getImgFullSize();
+
+   String getImgSize();
+
+   String setTypePixel(String var1);
+
+   String getPixelTypes();
+
+   String isReadyScanner();
+
+   String getNextDS();
+
+   String getCurrentDataSource();
+
+   String setDSName(String var1);
+
+   void setDeltaRecorte(int var1);
+
+   String isReady();
+}
+
+
+================================================================================
+// ARCHIVO: bmx/io/devices/ScannerDeviceV2.java
+================================================================================
+
+package bmx.io.devices;
+
+public interface ScannerDeviceV2 {
+   String[] getDataSources();
+
+   void setDataSource(String var1);
+
+   String getDataSource();
+
+   int[] getDevicePixelTypes();
+
+   void setDevicePixelType(int var1);
+
+   void setDeltaRecorte(int var1);
+
+   void scan();
+
+   String getOriginalImage();
+
+   int[] getOriginalImageSize();
+
+   String getFullImage();
+
+   int[] getFullImageSize();
+
+   String getMediumImage();
+
+   String getThumbnailImage();
+}
+
+
+================================================================================
+// ARCHIVO: bmx/io/devices/SignPadDevice.java
+================================================================================
+
+package bmx.io.devices;
+
+public interface SignPadDevice {
+   String isReady();
+
+   String initTablet();
+
+   String startMinimum();
+
+   String clear();
+
+   int getTabletState();
+
+   int setTabletState(int var1);
+
+   String setPenWidth(String var1);
+
+   String getImagenCodificada();
+
+   String getImgCodificadaMedium();
+
+   String getImgCodificadaThumbnail();
+}
+
+
+================================================================================
+// ARCHIVO: bmx/io/devices/SignPadDeviceV2.java
+================================================================================
+
+package bmx.io.devices;
+
+public interface SignPadDeviceV2 {
+   void startCapture();
+
+   void endCapture();
+
+   String getFullSignature();
+
+   String getMediumSignature();
+
+   String getThumbnailSignature();
+}
+
+
+================================================================================
+// ARCHIVO: bmx/io/scanner/Scanner.java
+================================================================================
+
+package bmx.io.scanner;
+
+import bmx.io.devices.PixelType;
+import bmx.io.utils.ImageUtil;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import net.javajeff.jtwain.JTwain;
+import net.javajeff.jtwain.JTwainException;
+
+public class Scanner {
+   private PixelType a;
+   private String b;
+   private BufferedImage c;
+
+   public Scanner() {
+      this.a = PixelType.RGB;
+   }
+
+   public void init() {
+      if (!JTwain.init()) {
+         throw new UnsupportedOperationException("JTwain: TWAIN not supported");
+      }
+   }
+
+   public void selectSource() {
+      JTwain._selectSourceAsDefault();
+   }
+
+   public void setDataSource(String var1) {
+      this.b = var1;
+   }
+
+   public String getCurrentDataSource() {
+      return this.c() ? this.b : a();
+   }
+
+   private static String a() {
+      String var0;
+      try {
+         JTwain.openDSM();
+         var0 = JTwain.getDefaultDS();
+      } finally {
+         try {
+            JTwain.closeDSM();
+         } catch (JTwainException var4) {
+         }
+
+      }
+
+      return var0;
+   }
+
+   public boolean isReady() {
+      try {
+         JTwain.openDSM();
+         JTwain.openDS(this.d());
+         return true;
+      } catch (JTwainException var12) {
+      } finally {
+         try {
+            JTwain.closeDS();
+         } catch (JTwainException var11) {
+         }
+
+         try {
+            JTwain.closeDSM();
+         } catch (JTwainException var10) {
+         }
+
+      }
+
+      return false;
+   }
+
+   public String[] getDataSources() {
+      try {
+         ArrayList var1 = new ArrayList();
+         JTwain.openDSM();
+         String var2;
+         if (!(var2 = JTwain.getFirstDS()).trim().isEmpty()) {
+            var1.add(var2);
+         }
+
+         int var3 = 0;
+
+         while(var3++ < 8 && !(var2 = JTwain.getNextDS()).isEmpty()) {
+            if (!var2.trim().isEmpty()) {
+               var1.add(var2);
+            }
+         }
+
+         String[] var12 = (String[])var1.toArray(new String[var1.size()]);
+         return var12;
+      } catch (JTwainException var10) {
+      } finally {
+         try {
+            JTwain.closeDSM();
+         } catch (JTwainException var9) {
+         }
+
+      }
+
+      return null;
+   }
+
+   public int[] getPixelTypes() {
+      int[] var1;
+      try {
+         JTwain.openDSM();
+         JTwain.openDS(this.d());
+         var1 = JTwain.getPixelTypes();
+      } finally {
+         try {
+            JTwain.closeDS();
+         } catch (JTwainException var8) {
+         }
+
+         try {
+            JTwain.closeDSM();
+         } catch (JTwainException var7) {
+         }
+
+      }
+
+      return var1;
+   }
+
+   public void setPixelType(PixelType var1) {
+      this.a = var1;
+   }
+
+   public void scan() {
+      Image[] var1;
+      if ((var1 = this.b()) != null && var1.length != 0) {
+         this.c = ImageUtil.getBufferedImage(var1[0]);
+      } else {
+         throw new IllegalStateException("no images acquired");
+      }
+   }
+
+   private Image[] b() {
+      Image[] var1;
+      try {
+         JTwain.openDSM();
+         JTwain.openDS(this.d());
+         JTwain.setPixelType(this.a.code);
+         var1 = JTwain.acquire();
+      } finally {
+         try {
+            JTwain.closeDS();
+         } catch (JTwainException var8) {
+         }
+
+         try {
+            JTwain.closeDSM();
+         } catch (JTwainException var7) {
+         }
+
+      }
+
+      return var1;
+   }
+
+   private boolean c() {
+      return this.b != null && !this.b.trim().isEmpty();
+   }
+
+   private String d() {
+      return this.c() ? this.b : JTwain.getDefaultDS();
+   }
+
+   public BufferedImage getAcquired() {
+      if (this.c == null) {
+         throw new IllegalStateException("no images acquired");
+      } else {
+         return this.c;
+      }
+   }
+}
+
+
+================================================================================
+// ARCHIVO: bmx/io/scanner/applet/ScannerApplet.java
+================================================================================
+
+package bmx.io.scanner.applet;
+
+import bmx.io.devices.DeviceDiagnostics;
+import bmx.io.devices.PixelType;
+import bmx.io.devices.ScannerDevice;
+import bmx.io.devices.ScannerDeviceV2;
+import bmx.io.scanner.Scanner;
+import bmx.io.utils.BlackWhiteCropper;
+import bmx.io.utils.DLLDiagnostics;
+import bmx.io.utils.ImageUtil;
+import java.applet.Applet;
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.util.logging.Logger;
+import netscape.javascript.JSObject;
+import org.apache.commons.codec.binary.Base64;
+
+public class ScannerApplet extends Applet implements DeviceDiagnostics, ScannerDevice, ScannerDeviceV2 {
+   private static final String[] a;
+   private DLLDiagnostics b;
+   private Scanner c;
+   private BufferedImage d;
+   private BufferedImage e;
+   private BlackWhiteCropper f;
+   private JSObject g;
+   private String h;
+   private String i;
+   private String j;
+
+   public void init() {
+      this.g = JSObject.getWindow(this);
+      this.h = this.getParameter("onLoad");
+      this.i = this.getParameter("onBegin");
+      this.j = this.getParameter("onEnd");
+      this.b = new DLLDiagnostics(a);
+      this.f = new BlackWhiteCropper();
+      this.c = new Scanner();
+      this.c.init();
+      this.g.call(this.h, new String[0]);
+   }
+
+   public String[] getDLLSearchPaths() {
+      return this.b.getDLLSearchPaths();
+   }
+
+   public boolean dependentDLLsFound() {
+      return this.b.dependentDLLsFound();
+   }
+
+   public String[] getDependentDLLPaths() {
+      return this.b.getDependentDLLPaths();
+   }
+
+   public boolean isDeviceReady() {
+      return this.c.isReady();
+   }
+
+   public String getStatus() {
+      return Boolean.TRUE.toString();
+   }
+
+   public void selectSource() {
+      this.c.selectSource();
+   }
+
+   public String asignarImagen() {
+      this.scan();
+      return Boolean.TRUE.toString();
+   }
+
+   public String getImgFinal() {
+      return this.getFullImage();
+   }
+
+   public String getImgFinalMedium() {
+      return this.getMediumImage();
+   }
+
+   public String getImgFinalThumbnail() {
+      return this.getThumbnailImage();
+   }
+
+   public String getFullImgFinal() {
+      return this.getOriginalImage();
+   }
+
+   public String getSizeImg() {
+      int[] var1 = this.getFullImageSize();
+      return String.format("%d,%d", var1[0], var1[1]);
+   }
+
+   public String getImgFullSize() {
+      return this.getSizeImg();
+   }
+
+   public String getImgSize() {
+      return this.getSizeImg();
+   }
+
+   public String setTypePixel(String var1) {
+      this.setDevicePixelType(Integer.valueOf(var1));
+      return Boolean.TRUE.toString();
+   }
+
+   public String getPixelTypes() {
+      int[] var10000 = this.getDevicePixelTypes();
+      String var2 = ",";
+      int[] var1 = var10000;
+      StringBuilder var3 = new StringBuilder();
+      if (var1 != null && var1.length > 0) {
+         for(int var6 : var1 = var1) {
+            var3.append(var6).append(var2);
+         }
+
+         var3.deleteCharAt(var3.length() - var2.length());
+      }
+
+      return var3.toString();
+   }
+
+   public String isReadyScanner() {
+      return Boolean.valueOf(this.isDeviceReady()).toString();
+   }
+
+   public String getNextDS() {
+      String[] var10000 = this.getDataSources();
+      String var2 = "|";
+      String[] var1 = var10000;
+      StringBuilder var3 = new StringBuilder();
+      if (var1 != null && var1.length > 0) {
+         for(String var6 : var1 = var1) {
+            var3.append(var6).append(var2);
+         }
+
+         var3.deleteCharAt(var3.length() - var2.length());
+      }
+
+      return var3.toString();
+   }
+
+   public String getCurrentDataSource() {
+      return this.getDataSource();
+   }
+
+   public String setDSName(String var1) {
+      this.setDataSource(var1);
+      return Boolean.TRUE.toString();
+   }
+
+   public void setDeltaRecorte(int var1) {
+      this.f.setAutoCropDelta(var1);
+   }
+
+   public String isReady() {
+      return Boolean.valueOf(this.isDeviceReady()).toString();
+   }
+
+   public int[] getDevicePixelTypes() {
+      return this.c.getPixelTypes();
+   }
+
+   public void setDevicePixelType(int var1) {
+      this.c.setPixelType(PixelType.byCode(var1));
+   }
+
+   public String[] getDataSources() {
+      return this.c.getDataSources();
+   }
+
+   public String getDataSource() {
+      return this.c.getCurrentDataSource();
+   }
+
+   public void setDataSource(String var1) {
+      this.c.setDataSource(var1);
+   }
+
+   public void scan() {
+      this.d = null;
+      this.e = null;
+      this.g.call(this.i, new String[0]);
+      this.c.scan();
+      this.g.call(this.j, new String[0]);
+   }
+
+   public String getOriginalImage() {
+      return Base64.encodeBase64String(ImageUtil.getBytes(this.a()));
+   }
+
+   public int[] getOriginalImageSize() {
+      Dimension var1 = ImageUtil.getSize(this.a());
+      return new int[]{var1.width, var1.height};
+   }
+
+   public String getFullImage() {
+      return Base64.encodeBase64String(ImageUtil.getBytes(this.b()));
+   }
+
+   public int[] getFullImageSize() {
+      Dimension var1 = ImageUtil.getSize(this.b());
+      return new int[]{var1.width, var1.height};
+   }
+
+   public String getMediumImage() {
+      BufferedImage var10000 = this.b();
+      short var3 = 180;
+      short var2 = 218;
+      return Base64.encodeBase64String(ImageUtil.getBytes(ImageUtil.resize((Image)var10000, var2, var3)));
+   }
+
+   public String getThumbnailImage() {
+      BufferedImage var10000 = this.b();
+      byte var3 = 90;
+      byte var2 = 108;
+      return Base64.encodeBase64String(ImageUtil.getBytes(ImageUtil.resize((Image)var10000, var2, var3)));
+   }
+
+   private BufferedImage a() {
+      if (this.d == null) {
+         this.d = this.c.getAcquired();
+      }
+
+      return this.d;
+   }
+
+   private BufferedImage b() {
+      if (this.e == null) {
+         this.e = this.f.crop(this.a());
+      }
+
+      return this.e;
+   }
+
+   static {
+      Logger.getLogger(ScannerApplet.class.toString());
+      a = new String[]{"jtwain.dll"};
+   }
+}
+
+
+================================================================================
+// ARCHIVO: bmx/io/utils/BlackPixelAreaDetector.java
+================================================================================
+
+package bmx.io.utils;
+
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.awt.image.PixelGrabber;
+
+public class BlackPixelAreaDetector implements CropAreaDetector {
+   public Rectangle getCropArea(BufferedImage var1) {
+      int var2 = var1.getWidth();
+      int var3 = var1.getHeight();
+      int[] var10 = a(var1, var2, var3);
+      int var4 = 0;
+      int var5 = var2 - 1;
+      int var6 = 0;
+      --var3;
+      int var7 = 0;
+      int var8 = 0;
+
+      for(int var9 = 0; var7 < var10.length; var9 = var7 / var2) {
+         if (var10[var7] != -1) {
+            if (var8 < var5) {
+               var5 = var8;
+            }
+
+            if (var8 > var4) {
+               var4 = var8;
+            }
+
+            if (var9 < var3) {
+               var3 = var9;
+            }
+
+            if (var9 > var6) {
+               var6 = var9;
+            }
+         }
+
+         var8 = ++var7 % var2;
+      }
+
+      var7 = var4 - var5 + 1;
+      var8 = var6 - var3 + 1;
+      return new Rectangle(var5, var3, var7, var8);
+   }
+
+   private static int[] a(BufferedImage var0, int var1, int var2) {
+      try {
+         int[] var3 = new int[var1 * var2];
+         (new PixelGrabber(var0, 0, 0, var1, var2, var3, 0, var1)).grabPixels();
+         return var3;
+      } catch (InterruptedException var4) {
+         throw new RuntimeException(var4);
+      }
+   }
+}
+
+
+================================================================================
+// ARCHIVO: bmx/io/utils/BlackWhiteCropper.java
+================================================================================
+
+package bmx.io.utils;
+
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class BlackWhiteCropper implements Cropper {
+   private static final Logger a = Logger.getLogger(Cropper.class.getName());
+   private static final Level b;
+   private BlackPixelAreaDetector c = new BlackPixelAreaDetector();
+   private int d = 550;
+
+   public BufferedImage crop(BufferedImage var1) {
+      int var2 = var1.getWidth();
+      int var3 = var1.getHeight();
+      a.log(b, String.format("Original {w:%d, h:%d}", var2, var3));
+      BufferedImage var4;
+      int var5 = (var4 = ImageUtil.resize(var1, this.getAutoCropDelta())).getWidth();
+      int var6 = var4.getHeight();
+      a.log(b, String.format("Scaled to %d {w:%d, h:%d}", this.getAutoCropDelta(), var5, var6));
+      var4 = ImageUtil.getBlackWhite(var4);
+      Rectangle var13 = this.c.getCropArea(var4);
+      a.log(b, String.format("Crop {x:%d, y:%d, w:%d, h:%d}", var13.x, var13.y, var13.width, var13.height));
+      double var10 = (double)var2 / (double)var5;
+      var5 = (int)((double)var13.x * var10);
+      var6 = (int)((double)var13.y * var10);
+      int var7 = (int)((double)var13.width * var10);
+      int var14 = (int)((double)var13.height * var10);
+      Rectangle var15 = new Rectangle(var5, var6, var7, var14);
+      a.log(b, String.format("Rescaled crop {x:%d, y:%d, w:%d, h:%d}", var15.x, var15.y, var15.width, var15.height));
+      Rectangle var11 = new Rectangle(0, 0, var2, var3);
+      boolean var23 = true;
+      var5 = Math.max(var15.x - 70, var11.x);
+      var6 = Math.max(var15.y - 70, var11.y);
+      var7 = Math.min(var15.x + var15.width + 70, var11.width) - var5;
+      int var16 = Math.min(var15.y + var15.height + 70, var11.height) - var6;
+      Rectangle var17 = new Rectangle(var5, var6, var7, var16);
+      a.log(b, String.format("Padded crop {x:%d, y:%d, w:%d, h:%d}", var17.x, var17.y, var17.width, var17.height));
+      return var1.getSubimage(var17.x, var17.y, var17.width, var17.height);
+   }
+
+   public int getAutoCropDelta() {
+      return this.d;
+   }
+
+   public void setAutoCropDelta(int var1) {
+      this.d = var1;
+   }
+
+   static {
+      b = Level.INFO;
+   }
+}
+
+
+================================================================================
+// ARCHIVO: bmx/io/utils/CropAreaDetector.java
+================================================================================
+
+package bmx.io.utils;
+
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+
+public interface CropAreaDetector {
+   Rectangle getCropArea(BufferedImage var1);
+}
+
+
+================================================================================
+// ARCHIVO: bmx/io/utils/Cropper.java
+================================================================================
+
+package bmx.io.utils;
+
+import java.awt.image.BufferedImage;
+
+public interface Cropper {
+   BufferedImage crop(BufferedImage var1);
+}
+
+
+================================================================================
+// ARCHIVO: bmx/io/utils/DLLDiagnostics.java
+================================================================================
+
+package bmx.io.utils;
+
+import bmx.io.devices.DeviceDiagnostics;
+import java.io.File;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class DLLDiagnostics implements DeviceDiagnostics {
+   private final Map a;
+   private final String[] b;
+
+   public DLLDiagnostics(String[] var1) {
+      this.b = var1;
+      this.a = this.a(var1);
+   }
+
+   public boolean isDeviceReady() {
+      return false;
+   }
+
+   public String[] getDLLSearchPaths() {
+      return System.getProperty("java.library.path").split(System.getProperty("path.separator"));
+   }
+
+   public boolean dependentDLLsFound() {
+      String[] var1;
+      for(String var4 : var1 = this.b) {
+         if (this.a.get(var4) == null) {
+            return false;
+         }
+      }
+
+      return true;
+   }
+
+   public String[] getDependentDLLPaths() {
+      return (String[])this.a.values().toArray(new String[this.a.size()]);
+   }
+
+   private Map a(String[] var1) {
+      HashMap var2 = new HashMap();
+      List var10 = Arrays.asList(var1);
+
+      String[] var3;
+      for(String var6 : var3 = this.getDLLSearchPaths()) {
+         for(String var8 : var10) {
+            File var9;
+            if ((var9 = new File(var6)).exists() && var9.isDirectory() && (var9 = new File(var9, var8)).exists()) {
+               var2.put(var8, var9.getAbsolutePath());
+            }
+         }
+      }
+
+      return var2;
+   }
+}
+
+
+================================================================================
+// ARCHIVO: bmx/io/utils/ImageUtil.java
+================================================================================
+
+package bmx.io.utils;
+
+import java.awt.AlphaComposite;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import javax.imageio.ImageIO;
+
+public class ImageUtil {
+   public static byte[] resize(byte[] var0, int var1, int var2) {
+      return a(resize((Image)getImage(var0), var1, var2));
+   }
+
+   public static BufferedImage resize(BufferedImage var0, int var1) {
+      int var10001 = var0.getWidth();
+      int var3 = var0.getHeight();
+      int var2 = var10001;
+      double var6;
+      if (var2 > var3) {
+         var6 = (double)var1 / (double)var2;
+      } else {
+         var6 = (double)var1 / (double)var3;
+      }
+
+      var1 = (int)(var6 * (double)var2);
+      var2 = (int)(var6 * (double)var3);
+      Dimension var9 = new Dimension(var1, var2);
+      return resize((Image)var0, var9.width, var9.height);
+   }
+
+   public static BufferedImage resize(Image var0, int var1, int var2) {
+      BufferedImage var3;
+      Graphics2D var4;
+      (var4 = (var3 = new BufferedImage(var1, var2, 1)).createGraphics()).setComposite(AlphaComposite.Src);
+      var4.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+      var4.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+      var4.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+      var4.drawImage(var0, 0, 0, var1, var2, (ImageObserver)null);
+      var4.dispose();
+      return var3;
+   }
+
+   public static byte[] getBytes(Image var0) {
+      return a(getBufferedImage(var0));
+   }
+
+   public static BufferedImage getBufferedImage(Image var0) {
+      BufferedImage var1;
+      Graphics2D var2;
+      (var2 = (var1 = new BufferedImage(var0.getWidth((ImageObserver)null), var0.getHeight((ImageObserver)null), 1)).createGraphics()).setComposite(AlphaComposite.Src);
+      var2.drawImage(var0, 0, 0, (ImageObserver)null);
+      var2.dispose();
+      return var1;
+   }
+
+   private static byte[] a(BufferedImage var0) {
+      ByteArrayOutputStream var1 = new ByteArrayOutputStream();
+
+      try {
+         ImageIO.write(var0, "jpeg", var1);
+      } catch (IOException var2) {
+         throw new RuntimeException(var2);
+      }
+
+      return var1.toByteArray();
+   }
+
+   public static BufferedImage getImage(byte[] var0) {
+      try {
+         return ImageIO.read(new ByteArrayInputStream(var0));
+      } catch (IOException var1) {
+         throw new RuntimeException(var1);
+      }
+   }
+
+   public static Dimension getSize(byte[] var0) {
+      return getSize(getImage(var0));
+   }
+
+   public static Dimension getSize(BufferedImage var0) {
+      return new Dimension(var0.getWidth(), var0.getHeight());
+   }
+
+   public static byte[] loadBytes(String var0) {
+      try {
+         InputStream var4;
+         byte[] var1 = new byte[(var4 = Thread.currentThread().getContextClassLoader().getResourceAsStream(var0)).available()];
+
+         for(int var2 = 0; var4.available() > 0; var2 += var4.read(var1, var2, var4.available())) {
+         }
+
+         var4.close();
+         return var1;
+      } catch (IOException var3) {
+         throw new RuntimeException(var3);
+      }
+   }
+
+   public static BufferedImage loadImage(String var0) {
+      InputStream var2 = Thread.currentThread().getContextClassLoader().getResourceAsStream(var0);
+
+      try {
+         return ImageIO.read(var2);
+      } catch (IOException var1) {
+         throw new RuntimeException(var1);
+      }
+   }
+
+   public static BufferedImage getBlackWhite(BufferedImage var0) {
+      BufferedImage var1;
+      Graphics var2;
+      (var2 = (var1 = new BufferedImage(var0.getWidth(), var0.getHeight(), 12)).getGraphics()).drawImage(var0, 0, 0, (ImageObserver)null);
+      var2.dispose();
+      return var1;
+   }
+}
+
+
+================================================================================
+// ARCHIVO: net/javajeff/jtwain/JTwain.java
+================================================================================
+
+package net.javajeff.jtwain;
+
+import java.awt.Image;
+
+public class JTwain {
+   public static final int VMAJOR = 1;
+   public static final int VMINOR = 1;
+   public static final int RC_SUCCESS = 0;
+   public static final int RC_FAILURE = 1;
+   public static final int RC_CHECKSTATUS = 2;
+   public static final int RC_CANCEL = 3;
+   public static final int RC_DSEVENT = 4;
+   public static final int RC_NOTDSEVENT = 5;
+   public static final int RC_XFERDONE = 6;
+   public static final int RC_ENDOFLIST = 7;
+   public static final int RC_INFONOTSUPPORTED = 8;
+   public static final int RC_DATANOTAVAILABLE = 9;
+   public static final int CC_SUCCESS = 0;
+   public static final int CC_BUMMER = 1;
+   public static final int CC_LOWMEMORY = 2;
+   public static final int CC_NODS = 3;
+   public static final int CC_MAXCONNECTIONS = 4;
+   public static final int CC_OPERATIONERROR = 5;
+   public static final int CC_BADCAP = 6;
+   public static final int CC_BADPROTOCOL = 9;
+   public static final int CC_BADVALUE = 10;
+   public static final int CC_SEQERROR = 11;
+   public static final int CC_BADDEST = 12;
+   public static final int CC_CAPUNSUPPORTED = 13;
+   public static final int CC_CAPBADOPERATION = 14;
+   public static final int CC_CAPSEQERROR = 15;
+   public static final int CC_DENIED = 16;
+   public static final int CC_FILEEXISTS = 17;
+   public static final int CC_FILENOTFOUND = 18;
+   public static final int CC_NOTEMPTY = 19;
+   public static final int CC_PAPERJAM = 20;
+   public static final int CC_PAPERDOUBLEFEED = 21;
+   public static final int CC_FILEWRITEERROR = 22;
+   public static final int CC_CHECKDEVICEONLINE = 23;
+   public static final int PT_BW = 0;
+   public static final int PT_GRAY = 1;
+   public static final int PT_RGB = 2;
+   public static final int PT_PALETTE = 3;
+   public static final int PT_CMY = 4;
+   public static final int PT_CMYK = 5;
+   public static final int PT_YUV = 6;
+   public static final int PT_YUVK = 7;
+   public static final int PT_CIEXYZ = 8;
+
+   public static boolean init() {
+      try {
+         System.loadLibrary("jtwain");
+         return true;
+      } catch (UnsatisfiedLinkError var0) {
+         return false;
+      }
+   }
+
+   public static native Image[] acquire();
+
+   public static native void acquireToBMP(String var0);
+
+   public static native void closeDS();
+
+   public static native void closeDSM();
+
+   public static native int getCC(int var0);
+
+   public static native String getDefaultDS();
+
+   public static native String getFirstDS();
+
+   public static native String getNextDS();
+
+   public static native int getPixelType();
+
+   public static native int[] getPixelTypes();
+
+   public static native int getRC();
+
+   public static native void openDS(String var0);
+
+   public static native void openDSM();
+
+   public static native void setPixelType(int var0);
+
+   public static native Image _acquire();
+
+   public static native void _selectSourceAsDefault();
+}
+
+
+================================================================================
+// ARCHIVO: net/javajeff/jtwain/JTwainException.java
+================================================================================
+
+package net.javajeff.jtwain;
+
+public class JTwainException extends RuntimeException {
+   public JTwainException(String var1) {
+      super(var1);
+   }
+}
+
+
+================================================================================
+// ARCHIVO: net/javajeff/jtwain/UnsupportedCapabilityException.java
+================================================================================
+
+package net.javajeff.jtwain;
+
+public class UnsupportedCapabilityException extends RuntimeException {
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/BinaryDecoder.java
+================================================================================
+
+package org.apache.commons.codec;
+
+public interface BinaryDecoder extends Decoder {
+   byte[] decode(byte[] var1);
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/BinaryEncoder.java
+================================================================================
+
+package org.apache.commons.codec;
+
+public interface BinaryEncoder extends Encoder {
+   byte[] encode(byte[] var1);
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/CharEncoding.java
+================================================================================
+
+package org.apache.commons.codec;
+
+public class CharEncoding {
+   public static final String ISO_8859_1 = "ISO-8859-1";
+   public static final String US_ASCII = "US-ASCII";
+   public static final String UTF_16 = "UTF-16";
+   public static final String UTF_16BE = "UTF-16BE";
+   public static final String UTF_16LE = "UTF-16LE";
+   public static final String UTF_8 = "UTF-8";
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/Charsets.java
+================================================================================
+
+package org.apache.commons.codec;
+
+import java.nio.charset.Charset;
+
+public class Charsets {
+   public static final Charset ISO_8859_1 = Charset.forName("ISO-8859-1");
+   public static final Charset US_ASCII = Charset.forName("US-ASCII");
+   public static final Charset UTF_16 = Charset.forName("UTF-16");
+   public static final Charset UTF_16BE = Charset.forName("UTF-16BE");
+   public static final Charset UTF_16LE = Charset.forName("UTF-16LE");
+   public static final Charset UTF_8 = Charset.forName("UTF-8");
+
+   public static Charset toCharset(Charset var0) {
+      return var0 == null ? Charset.defaultCharset() : var0;
+   }
+
+   public static Charset toCharset(String var0) {
+      return var0 == null ? Charset.defaultCharset() : Charset.forName(var0);
+   }
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/Decoder.java
+================================================================================
+
+package org.apache.commons.codec;
+
+public interface Decoder {
+   Object decode(Object var1);
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/DecoderException.java
+================================================================================
+
+package org.apache.commons.codec;
+
+public class DecoderException extends Exception {
+   public DecoderException() {
+   }
+
+   public DecoderException(String var1) {
+      super(var1);
+   }
+
+   public DecoderException(String var1, Throwable var2) {
+      super(var1, var2);
+   }
+
+   public DecoderException(Throwable var1) {
+      super(var1);
+   }
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/Encoder.java
+================================================================================
+
+package org.apache.commons.codec;
+
+public interface Encoder {
+   Object encode(Object var1);
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/EncoderException.java
+================================================================================
+
+package org.apache.commons.codec;
+
+public class EncoderException extends Exception {
+   public EncoderException() {
+   }
+
+   public EncoderException(String var1) {
+      super(var1);
+   }
+
+   public EncoderException(String var1, Throwable var2) {
+      super(var1, var2);
+   }
+
+   public EncoderException(Throwable var1) {
+      super(var1);
+   }
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/StringDecoder.java
+================================================================================
+
+package org.apache.commons.codec;
+
+public interface StringDecoder extends Decoder {
+   String decode(String var1);
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/StringEncoder.java
+================================================================================
+
+package org.apache.commons.codec;
+
+public interface StringEncoder extends Encoder {
+   String encode(String var1);
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/StringEncoderComparator.java
+================================================================================
+
+package org.apache.commons.codec;
+
+import java.util.Comparator;
+
+public class StringEncoderComparator implements Comparator {
+   private final StringEncoder a;
+
+   public StringEncoderComparator() {
+      this.a = null;
+   }
+
+   public StringEncoderComparator(StringEncoder var1) {
+      this.a = var1;
+   }
+
+   public int compare(Object var1, Object var2) {
+      try {
+         Comparable var5 = (Comparable)this.a.encode(var1);
+         Comparable var6 = (Comparable)this.a.encode(var2);
+         var4 = var5.compareTo(var6);
+      } catch (EncoderException var3) {
+         var4 = 0;
+      }
+
+      return var4;
+   }
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/binary/Base32.java
+================================================================================
+
+package org.apache.commons.codec.binary;
+
+public class Base32 extends BaseNCodec {
+   private static final byte[] a = new byte[]{13, 10};
+   private static final byte[] b = new byte[]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 26, 27, 28, 29, 30, 31, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25};
+   private static final byte[] c = new byte[]{65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 50, 51, 52, 53, 54, 55};
+   private static final byte[] d = new byte[]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, -1, -1, -1, -1, -1, -1, -1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32};
+   private static final byte[] e = new byte[]{48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86};
+   private final int f;
+   private final byte[] g;
+   private final int h;
+   private final byte[] i;
+   private final byte[] j;
+
+   public Base32() {
+      this(false);
+   }
+
+   public Base32(byte var1) {
+      this(false, var1);
+   }
+
+   public Base32(boolean var1) {
+      this(0, (byte[])null, var1, (byte)61);
+   }
+
+   public Base32(boolean var1, byte var2) {
+      this(0, (byte[])null, var1, var2);
+   }
+
+   public Base32(int var1) {
+      this(var1, a);
+   }
+
+   public Base32(int var1, byte[] var2) {
+      this(var1, var2, false, (byte)61);
+   }
+
+   public Base32(int var1, byte[] var2, boolean var3) {
+      this(var1, var2, var3, (byte)61);
+   }
+
+   public Base32(int var1, byte[] var2, boolean var3, byte var4) {
+      super(5, 8, var1, var2 == null ? 0 : var2.length, var4);
+      if (var3) {
+         this.i = e;
+         this.g = d;
+      } else {
+         this.i = c;
+         this.g = b;
+      }
+
+      if (var1 > 0) {
+         if (var2 == null) {
+            throw new IllegalArgumentException("lineLength " + var1 + " > 0, but lineSeparator is null");
+         }
+
+         if (this.containsAlphabetOrPad(var2)) {
+            String var5 = StringUtils.newStringUtf8(var2);
+            throw new IllegalArgumentException("lineSeparator must not contain Base32 characters: [" + var5 + "]");
+         }
+
+         this.h = 8 + var2.length;
+         this.j = new byte[var2.length];
+         System.arraycopy(var2, 0, this.j, 0, var2.length);
+      } else {
+         this.h = 8;
+         this.j = null;
+      }
+
+      this.f = this.h - 1;
+      if (this.isInAlphabet(var4) || isWhiteSpace(var4)) {
+         throw new IllegalArgumentException("pad must not be in alphabet or whitespace");
+      }
+   }
+
+   final void a(byte[] var1, int var2, int var3, a var4) {
+      if (!var4.f) {
+         if (var3 < 0) {
+            var4.f = true;
+         }
+
+         for(int var5 = 0; var5 < var3; ++var5) {
+            byte var6;
+            if ((var6 = var1[var2++]) == this.pad) {
+               var4.f = true;
+               break;
+            }
+
+            byte[] var7 = this.ensureBufferSize(this.f, var4);
+            if (var6 >= 0 && var6 < this.g.length && (var6 = this.g[var6]) >= 0) {
+               var4.h = (var4.h + 1) % 8;
+               var4.b = (var4.b << 5) + (long)var6;
+               if (var4.h == 0) {
+                  var7[var4.d++] = (byte)((int)(var4.b >> 32 & 255L));
+                  var7[var4.d++] = (byte)((int)(var4.b >> 24 & 255L));
+                  var7[var4.d++] = (byte)((int)(var4.b >> 16 & 255L));
+                  var7[var4.d++] = (byte)((int)(var4.b >> 8 & 255L));
+                  var7[var4.d++] = (byte)((int)(var4.b & 255L));
+               }
+            }
+         }
+
+         if (var4.f && var4.h >= 2) {
+            byte[] var8 = this.ensureBufferSize(this.f, var4);
+            switch (var4.h) {
+               case 2:
+                  var8[var4.d++] = (byte)((int)(var4.b >> 2 & 255L));
+                  return;
+               case 3:
+                  var8[var4.d++] = (byte)((int)(var4.b >> 7 & 255L));
+                  return;
+               case 4:
+                  var4.b >>= 4;
+                  var8[var4.d++] = (byte)((int)(var4.b >> 8 & 255L));
+                  var8[var4.d++] = (byte)((int)(var4.b & 255L));
+                  return;
+               case 5:
+                  var4.b >>= 1;
+                  var8[var4.d++] = (byte)((int)(var4.b >> 16 & 255L));
+                  var8[var4.d++] = (byte)((int)(var4.b >> 8 & 255L));
+                  var8[var4.d++] = (byte)((int)(var4.b & 255L));
+                  return;
+               case 6:
+                  var4.b >>= 6;
+                  var8[var4.d++] = (byte)((int)(var4.b >> 16 & 255L));
+                  var8[var4.d++] = (byte)((int)(var4.b >> 8 & 255L));
+                  var8[var4.d++] = (byte)((int)(var4.b & 255L));
+                  return;
+               case 7:
+                  var4.b >>= 3;
+                  var8[var4.d++] = (byte)((int)(var4.b >> 24 & 255L));
+                  var8[var4.d++] = (byte)((int)(var4.b >> 16 & 255L));
+                  var8[var4.d++] = (byte)((int)(var4.b >> 8 & 255L));
+                  var8[var4.d++] = (byte)((int)(var4.b & 255L));
+                  return;
+               default:
+                  throw new IllegalStateException("Impossible modulus " + var4.h);
+            }
+         }
+      }
+   }
+
+   final void b(byte[] var1, int var2, int var3, a var4) {
+      if (!var4.f) {
+         if (var3 < 0) {
+            var4.f = true;
+            if (var4.h != 0 || this.lineLength != 0) {
+               byte[] var8 = this.ensureBufferSize(this.h, var4);
+               int var9 = var4.d;
+               switch (var4.h) {
+                  case 0:
+                     break;
+                  case 1:
+                     var8[var4.d++] = this.i[(int)(var4.b >> 3) & 31];
+                     var8[var4.d++] = this.i[(int)(var4.b << 2) & 31];
+                     var8[var4.d++] = this.pad;
+                     var8[var4.d++] = this.pad;
+                     var8[var4.d++] = this.pad;
+                     var8[var4.d++] = this.pad;
+                     var8[var4.d++] = this.pad;
+                     var8[var4.d++] = this.pad;
+                     break;
+                  case 2:
+                     var8[var4.d++] = this.i[(int)(var4.b >> 11) & 31];
+                     var8[var4.d++] = this.i[(int)(var4.b >> 6) & 31];
+                     var8[var4.d++] = this.i[(int)(var4.b >> 1) & 31];
+                     var8[var4.d++] = this.i[(int)(var4.b << 4) & 31];
+                     var8[var4.d++] = this.pad;
+                     var8[var4.d++] = this.pad;
+                     var8[var4.d++] = this.pad;
+                     var8[var4.d++] = this.pad;
+                     break;
+                  case 3:
+                     var8[var4.d++] = this.i[(int)(var4.b >> 19) & 31];
+                     var8[var4.d++] = this.i[(int)(var4.b >> 14) & 31];
+                     var8[var4.d++] = this.i[(int)(var4.b >> 9) & 31];
+                     var8[var4.d++] = this.i[(int)(var4.b >> 4) & 31];
+                     var8[var4.d++] = this.i[(int)(var4.b << 1) & 31];
+                     var8[var4.d++] = this.pad;
+                     var8[var4.d++] = this.pad;
+                     var8[var4.d++] = this.pad;
+                     break;
+                  case 4:
+                     var8[var4.d++] = this.i[(int)(var4.b >> 27) & 31];
+                     var8[var4.d++] = this.i[(int)(var4.b >> 22) & 31];
+                     var8[var4.d++] = this.i[(int)(var4.b >> 17) & 31];
+                     var8[var4.d++] = this.i[(int)(var4.b >> 12) & 31];
+                     var8[var4.d++] = this.i[(int)(var4.b >> 7) & 31];
+                     var8[var4.d++] = this.i[(int)(var4.b >> 2) & 31];
+                     var8[var4.d++] = this.i[(int)(var4.b << 3) & 31];
+                     var8[var4.d++] = this.pad;
+                     break;
+                  default:
+                     throw new IllegalStateException("Impossible modulus " + var4.h);
+               }
+
+               var4.g += var4.d - var9;
+               if (this.lineLength > 0 && var4.g > 0) {
+                  System.arraycopy(this.j, 0, var8, var4.d, this.j.length);
+                  var4.d += this.j.length;
+               }
+
+            }
+         } else {
+            for(int var5 = 0; var5 < var3; ++var5) {
+               byte[] var6 = this.ensureBufferSize(this.h, var4);
+               var4.h = (var4.h + 1) % 5;
+               int var7;
+               if ((var7 = var1[var2++]) < 0) {
+                  var7 += 256;
+               }
+
+               var4.b = (var4.b << 8) + (long)var7;
+               if (var4.h == 0) {
+                  var6[var4.d++] = this.i[(int)(var4.b >> 35) & 31];
+                  var6[var4.d++] = this.i[(int)(var4.b >> 30) & 31];
+                  var6[var4.d++] = this.i[(int)(var4.b >> 25) & 31];
+                  var6[var4.d++] = this.i[(int)(var4.b >> 20) & 31];
+                  var6[var4.d++] = this.i[(int)(var4.b >> 15) & 31];
+                  var6[var4.d++] = this.i[(int)(var4.b >> 10) & 31];
+                  var6[var4.d++] = this.i[(int)(var4.b >> 5) & 31];
+                  var6[var4.d++] = this.i[(int)var4.b & 31];
+                  var4.g += 8;
+                  if (this.lineLength > 0 && this.lineLength <= var4.g) {
+                     System.arraycopy(this.j, 0, var6, var4.d, this.j.length);
+                     var4.d += this.j.length;
+                     var4.g = 0;
+                  }
+               }
+            }
+
+         }
+      }
+   }
+
+   public boolean isInAlphabet(byte var1) {
+      return var1 >= 0 && var1 < this.g.length && this.g[var1] != -1;
+   }
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/binary/Base32InputStream.java
+================================================================================
+
+package org.apache.commons.codec.binary;
+
+import java.io.InputStream;
+
+public class Base32InputStream extends BaseNCodecInputStream {
+   public Base32InputStream(InputStream var1) {
+      this(var1, false);
+   }
+
+   public Base32InputStream(InputStream var1, boolean var2) {
+      super(var1, new Base32(false), var2);
+   }
+
+   public Base32InputStream(InputStream var1, boolean var2, int var3, byte[] var4) {
+      super(var1, new Base32(var3, var4), var2);
+   }
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/binary/Base32OutputStream.java
+================================================================================
+
+package org.apache.commons.codec.binary;
+
+import java.io.OutputStream;
+
+public class Base32OutputStream extends BaseNCodecOutputStream {
+   public Base32OutputStream(OutputStream var1) {
+      this(var1, true);
+   }
+
+   public Base32OutputStream(OutputStream var1, boolean var2) {
+      super(var1, new Base32(false), var2);
+   }
+
+   public Base32OutputStream(OutputStream var1, boolean var2, int var3, byte[] var4) {
+      super(var1, new Base32(var3, var4), var2);
+   }
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/binary/Base64.java
+================================================================================
+
+package org.apache.commons.codec.binary;
+
+import java.math.BigInteger;
+
+public class Base64 extends BaseNCodec {
+   private static byte[] a = new byte[]{13, 10};
+   private static final byte[] b = new byte[]{65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 43, 47};
+   private static final byte[] c = new byte[]{65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 45, 95};
+   private static final byte[] d = new byte[]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 62, -1, 62, -1, 63, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, -1, -1, -1, -1, -1, -1, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, -1, -1, -1, -1, 63, -1, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51};
+   private final byte[] e;
+   private final byte[] f;
+   private final byte[] g;
+   private final int h;
+   private final int i;
+
+   public Base64() {
+      this(0);
+   }
+
+   public Base64(boolean var1) {
+      this(76, a, var1);
+   }
+
+   public Base64(int var1) {
+      this(var1, a);
+   }
+
+   public Base64(int var1, byte[] var2) {
+      this(var1, var2, false);
+   }
+
+   public Base64(int var1, byte[] var2, boolean var3) {
+      super(3, 4, var1, var2 == null ? 0 : var2.length);
+      this.f = d;
+      if (var2 != null) {
+         if (this.containsAlphabetOrPad(var2)) {
+            String var4 = StringUtils.newStringUtf8(var2);
+            throw new IllegalArgumentException("lineSeparator must not contain base64 characters: [" + var4 + "]");
+         }
+
+         if (var1 > 0) {
+            this.i = 4 + var2.length;
+            this.g = new byte[var2.length];
+            System.arraycopy(var2, 0, this.g, 0, var2.length);
+         } else {
+            this.i = 4;
+            this.g = null;
+         }
+      } else {
+         this.i = 4;
+         this.g = null;
+      }
+
+      this.h = this.i - 1;
+      this.e = var3 ? c : b;
+   }
+
+   public boolean isUrlSafe() {
+      return this.e == c;
+   }
+
+   final void b(byte[] var1, int var2, int var3, a var4) {
+      if (!var4.f) {
+         if (var3 < 0) {
+            var4.f = true;
+            if (var4.h != 0 || this.lineLength != 0) {
+               byte[] var8 = this.ensureBufferSize(this.i, var4);
+               int var9 = var4.d;
+               switch (var4.h) {
+                  case 0:
+                     break;
+                  case 1:
+                     var8[var4.d++] = this.e[var4.a >> 2 & 63];
+                     var8[var4.d++] = this.e[var4.a << 4 & 63];
+                     if (this.e == b) {
+                        var8[var4.d++] = this.pad;
+                        var8[var4.d++] = this.pad;
+                     }
+                     break;
+                  case 2:
+                     var8[var4.d++] = this.e[var4.a >> 10 & 63];
+                     var8[var4.d++] = this.e[var4.a >> 4 & 63];
+                     var8[var4.d++] = this.e[var4.a << 2 & 63];
+                     if (this.e == b) {
+                        var8[var4.d++] = this.pad;
+                     }
+                     break;
+                  default:
+                     throw new IllegalStateException("Impossible modulus " + var4.h);
+               }
+
+               var4.g += var4.d - var9;
+               if (this.lineLength > 0 && var4.g > 0) {
+                  System.arraycopy(this.g, 0, var8, var4.d, this.g.length);
+                  var4.d += this.g.length;
+               }
+
+            }
+         } else {
+            for(int var5 = 0; var5 < var3; ++var5) {
+               byte[] var6 = this.ensureBufferSize(this.i, var4);
+               var4.h = (var4.h + 1) % 3;
+               int var7;
+               if ((var7 = var1[var2++]) < 0) {
+                  var7 += 256;
+               }
+
+               var4.a = (var4.a << 8) + var7;
+               if (var4.h == 0) {
+                  var6[var4.d++] = this.e[var4.a >> 18 & 63];
+                  var6[var4.d++] = this.e[var4.a >> 12 & 63];
+                  var6[var4.d++] = this.e[var4.a >> 6 & 63];
+                  var6[var4.d++] = this.e[var4.a & 63];
+                  var4.g += 4;
+                  if (this.lineLength > 0 && this.lineLength <= var4.g) {
+                     System.arraycopy(this.g, 0, var6, var4.d, this.g.length);
+                     var4.d += this.g.length;
+                     var4.g = 0;
+                  }
+               }
+            }
+
+         }
+      }
+   }
+
+   final void a(byte[] var1, int var2, int var3, a var4) {
+      if (!var4.f) {
+         if (var3 < 0) {
+            var4.f = true;
+         }
+
+         for(int var5 = 0; var5 < var3; ++var5) {
+            byte[] var6 = this.ensureBufferSize(this.h, var4);
+            byte var7;
+            if ((var7 = var1[var2++]) == this.pad) {
+               var4.f = true;
+               break;
+            }
+
+            if (var7 >= 0 && var7 < 123 && (var7 = d[var7]) >= 0) {
+               var4.h = (var4.h + 1) % 4;
+               var4.a = (var4.a << 6) + var7;
+               if (var4.h == 0) {
+                  var6[var4.d++] = (byte)(var4.a >> 16);
+                  var6[var4.d++] = (byte)(var4.a >> 8);
+                  var6[var4.d++] = (byte)var4.a;
+               }
+            }
+         }
+
+         if (var4.f && var4.h != 0) {
+            byte[] var8 = this.ensureBufferSize(this.h, var4);
+            switch (var4.h) {
+               case 1:
+                  return;
+               case 2:
+                  var4.a >>= 4;
+                  var8[var4.d++] = (byte)var4.a;
+                  return;
+               case 3:
+                  var4.a >>= 2;
+                  var8[var4.d++] = (byte)(var4.a >> 8);
+                  var8[var4.d++] = (byte)var4.a;
+                  return;
+               default:
+                  throw new IllegalStateException("Impossible modulus " + var4.h);
+            }
+         }
+      }
+   }
+
+   public static boolean isArrayByteBase64(byte[] var0) {
+      return isBase64(var0);
+   }
+
+   public static boolean isBase64(byte var0) {
+      return var0 == 61 || var0 >= 0 && var0 < 123 && d[var0] != -1;
+   }
+
+   public static boolean isBase64(String var0) {
+      return isBase64(StringUtils.getBytesUtf8(var0));
+   }
+
+   public static boolean isBase64(byte[] var0) {
+      for(int var1 = 0; var1 < var0.length; ++var1) {
+         if (!isBase64(var0[var1]) && !isWhiteSpace(var0[var1])) {
+            return false;
+         }
+      }
+
+      return true;
+   }
+
+   public static byte[] encodeBase64(byte[] var0) {
+      return encodeBase64(var0, false);
+   }
+
+   public static String encodeBase64String(byte[] var0) {
+      return StringUtils.newStringUtf8(encodeBase64(var0, false));
+   }
+
+   public static byte[] encodeBase64URLSafe(byte[] var0) {
+      return encodeBase64(var0, false, true);
+   }
+
+   public static String encodeBase64URLSafeString(byte[] var0) {
+      return StringUtils.newStringUtf8(encodeBase64(var0, false, true));
+   }
+
+   public static byte[] encodeBase64Chunked(byte[] var0) {
+      return encodeBase64(var0, true);
+   }
+
+   public static byte[] encodeBase64(byte[] var0, boolean var1) {
+      return encodeBase64(var0, var1, false);
+   }
+
+   public static byte[] encodeBase64(byte[] var0, boolean var1, boolean var2) {
+      return encodeBase64(var0, var1, var2, Integer.MAX_VALUE);
+   }
+
+   public static byte[] encodeBase64(byte[] var0, boolean var1, boolean var2, int var3) {
+      if (var0 != null && var0.length != 0) {
+         long var5;
+         Base64 var7;
+         if ((var5 = (var7 = var1 ? new Base64(var2) : new Base64(0, a, var2)).getEncodedLength(var0)) > (long)var3) {
+            throw new IllegalArgumentException("Input array too big, the output array would be bigger (" + var5 + ") than the specified maximum size of " + var3);
+         } else {
+            return var7.encode(var0);
+         }
+      } else {
+         return var0;
+      }
+   }
+
+   public static byte[] decodeBase64(String var0) {
+      return (new Base64()).decode(var0);
+   }
+
+   public static byte[] decodeBase64(byte[] var0) {
+      return (new Base64()).decode(var0);
+   }
+
+   public static BigInteger decodeInteger(byte[] var0) {
+      return new BigInteger(1, decodeBase64(var0));
+   }
+
+   public static byte[] encodeInteger(BigInteger var0) {
+      if (var0 == null) {
+         throw new NullPointerException("encodeInteger called with null parameter");
+      } else {
+         int var1 = var0.bitLength() + 7 >> 3 << 3;
+         byte[] var2 = var0.toByteArray();
+         byte[] var10000;
+         if (var0.bitLength() % 8 != 0 && var0.bitLength() / 8 + 1 == var1 / 8) {
+            var10000 = var2;
+         } else {
+            byte var3 = 0;
+            int var4 = var2.length;
+            if (var0.bitLength() % 8 == 0) {
+               var3 = 1;
+               --var4;
+            }
+
+            int var5 = var1 / 8 - var4;
+            byte[] var6 = new byte[var1 / 8];
+            System.arraycopy(var2, var3, var6, var5, var4);
+            var10000 = var6;
+         }
+
+         return encodeBase64(var10000, false);
+      }
+   }
+
+   protected boolean isInAlphabet(byte var1) {
+      return var1 >= 0 && var1 < this.f.length && this.f[var1] != -1;
+   }
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/binary/Base64InputStream.java
+================================================================================
+
+package org.apache.commons.codec.binary;
+
+import java.io.InputStream;
+
+public class Base64InputStream extends BaseNCodecInputStream {
+   public Base64InputStream(InputStream var1) {
+      this(var1, false);
+   }
+
+   public Base64InputStream(InputStream var1, boolean var2) {
+      super(var1, new Base64(false), var2);
+   }
+
+   public Base64InputStream(InputStream var1, boolean var2, int var3, byte[] var4) {
+      super(var1, new Base64(var3, var4), var2);
+   }
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/binary/Base64OutputStream.java
+================================================================================
+
+package org.apache.commons.codec.binary;
+
+import java.io.OutputStream;
+
+public class Base64OutputStream extends BaseNCodecOutputStream {
+   public Base64OutputStream(OutputStream var1) {
+      this(var1, true);
+   }
+
+   public Base64OutputStream(OutputStream var1, boolean var2) {
+      super(var1, new Base64(false), var2);
+   }
+
+   public Base64OutputStream(OutputStream var1, boolean var2, int var3, byte[] var4) {
+      super(var1, new Base64(var3, var4), var2);
+   }
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/binary/BaseNCodec.java
+================================================================================
+
+package org.apache.commons.codec.binary;
+
+import org.apache.commons.codec.BinaryDecoder;
+import org.apache.commons.codec.BinaryEncoder;
+import org.apache.commons.codec.DecoderException;
+import org.apache.commons.codec.EncoderException;
+
+public abstract class BaseNCodec implements BinaryDecoder, BinaryEncoder {
+   public static final int MIME_CHUNK_SIZE = 76;
+   public static final int PEM_CHUNK_SIZE = 64;
+   protected static final int MASK_8BITS = 255;
+   protected static final byte PAD_DEFAULT = 61;
+   protected final byte PAD;
+   protected final byte pad;
+   private final int a;
+   private final int b;
+   protected final int lineLength;
+   private final int c;
+
+   protected BaseNCodec(int var1, int var2, int var3, int var4) {
+      this(var1, var2, var3, var4, (byte)61);
+   }
+
+   protected BaseNCodec(int var1, int var2, int var3, int var4, byte var5) {
+      this.PAD = 61;
+      this.a = var1;
+      this.b = var2;
+      var1 = var3 > 0 && var4 > 0;
+      this.lineLength = var1 ? var3 / var2 * var2 : 0;
+      this.c = var4;
+      this.pad = var5;
+   }
+
+   static boolean a(a var0) {
+      return var0.c != null;
+   }
+
+   static int b(a var0) {
+      return var0.c != null ? var0.d - var0.e : 0;
+   }
+
+   protected int getDefaultBufferSize() {
+      return 8192;
+   }
+
+   protected byte[] ensureBufferSize(int var1, a var2) {
+      if (var2.c != null && var2.c.length >= var2.d + var1) {
+         return var2.c;
+      } else {
+         if (var2.c == null) {
+            var2.c = new byte[this.getDefaultBufferSize()];
+            var2.d = 0;
+            var2.e = 0;
+         } else {
+            byte[] var3 = new byte[var2.c.length << 1];
+            System.arraycopy(var2.c, 0, var3, 0, var2.c.length);
+            var2.c = var3;
+         }
+
+         return var2.c;
+      }
+   }
+
+   final int c(byte[] var1, int var2, int var3, a var4) {
+      if (var4.c != null) {
+         var3 = Math.min(b(var4), var3);
+         System.arraycopy(var4.c, var4.e, var1, var2, var3);
+         var4.e += var3;
+         if (var4.e >= var4.d) {
+            var4.c = null;
+         }
+
+         return var3;
+      } else {
+         return var4.f ? -1 : 0;
+      }
+   }
+
+   protected static boolean isWhiteSpace(byte var0) {
+      switch (var0) {
+         case 9:
+         case 10:
+         case 13:
+         case 32:
+            return true;
+         default:
+            return false;
+      }
+   }
+
+   public Object encode(Object var1) {
+      if (!(var1 instanceof byte[])) {
+         throw new EncoderException("Parameter supplied to Base-N encode is not a byte[]");
+      } else {
+         return this.encode((byte[])var1);
+      }
+   }
+
+   public String encodeToString(byte[] var1) {
+      return StringUtils.newStringUtf8(this.encode(var1));
+   }
+
+   public String encodeAsString(byte[] var1) {
+      return StringUtils.newStringUtf8(this.encode(var1));
+   }
+
+   public Object decode(Object var1) {
+      if (var1 instanceof byte[]) {
+         return this.decode((byte[])var1);
+      } else if (var1 instanceof String) {
+         return this.decode((String)var1);
+      } else {
+         throw new DecoderException("Parameter supplied to Base-N decode is not a byte[] or a String");
+      }
+   }
+
+   public byte[] decode(String var1) {
+      return this.decode(StringUtils.getBytesUtf8(var1));
+   }
+
+   public byte[] decode(byte[] var1) {
+      if (var1 != null && var1.length != 0) {
+         a var2 = new a();
+         this.a(var1, 0, var1.length, var2);
+         this.a(var1, 0, -1, var2);
+         var1 = new byte[var2.d];
+         this.c(var1, 0, var1.length, var2);
+         return var1;
+      } else {
+         return var1;
+      }
+   }
+
+   public byte[] encode(byte[] var1) {
+      if (var1 != null && var1.length != 0) {
+         a var2 = new a();
+         this.b(var1, 0, var1.length, var2);
+         this.b(var1, 0, -1, var2);
+         var1 = new byte[var2.d - var2.e];
+         this.c(var1, 0, var1.length, var2);
+         return var1;
+      } else {
+         return var1;
+      }
+   }
+
+   abstract void b(byte[] var1, int var2, int var3, a var4);
+
+   abstract void a(byte[] var1, int var2, int var3, a var4);
+
+   protected abstract boolean isInAlphabet(byte var1);
+
+   public boolean isInAlphabet(byte[] var1, boolean var2) {
+      for(int var3 = 0; var3 < var1.length; ++var3) {
+         if (!this.isInAlphabet(var1[var3]) && (!var2 || var1[var3] != this.pad && !isWhiteSpace(var1[var3]))) {
+            return false;
+         }
+      }
+
+      return true;
+   }
+
+   public boolean isInAlphabet(String var1) {
+      return this.isInAlphabet(StringUtils.getBytesUtf8(var1), true);
+   }
+
+   protected boolean containsAlphabetOrPad(byte[] var1) {
+      if (var1 == null) {
+         return false;
+      } else {
+         for(byte var4 : var1 = var1) {
+            if (this.pad == var4 || this.isInAlphabet(var4)) {
+               return true;
+            }
+         }
+
+         return false;
+      }
+   }
+
+   public long getEncodedLength(byte[] var1) {
+      long var2 = (long)((var1.length + this.a - 1) / this.a) * (long)this.b;
+      if (this.lineLength > 0) {
+         var2 += (var2 + (long)this.lineLength - 1L) / (long)this.lineLength * (long)this.c;
+      }
+
+      return var2;
+   }
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/binary/BaseNCodecInputStream.java
+================================================================================
+
+package org.apache.commons.codec.binary;
+
+import java.io.FilterInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+public class BaseNCodecInputStream extends FilterInputStream {
+   private final BaseNCodec a;
+   private final boolean b;
+   private final byte[] c = new byte[1];
+   private final a d = new a();
+
+   protected BaseNCodecInputStream(InputStream var1, BaseNCodec var2, boolean var3) {
+      super(var1);
+      this.b = var3;
+      this.a = var2;
+   }
+
+   public int available() {
+      return this.d.f ? 0 : 1;
+   }
+
+   public synchronized void mark(int var1) {
+   }
+
+   public boolean markSupported() {
+      return false;
+   }
+
+   public int read() {
+      int var1;
+      for(var1 = this.read(this.c, 0, 1); var1 == 0; var1 = this.read(this.c, 0, 1)) {
+      }
+
+      if (var1 > 0) {
+         return (var1 = this.c[0]) < 0 ? var1 + 256 : var1;
+      } else {
+         return -1;
+      }
+   }
+
+   public int read(byte[] var1, int var2, int var3) {
+      if (var1 == null) {
+         throw new NullPointerException();
+      } else if (var2 >= 0 && var3 >= 0) {
+         if (var2 <= var1.length && var2 + var3 <= var1.length) {
+            if (var3 == 0) {
+               return 0;
+            } else {
+               int var4;
+               for(var4 = 0; var4 == 0; var4 = this.a.c(var1, var2, var3, this.d)) {
+                  if (!BaseNCodec.a(this.d)) {
+                     byte[] var6 = new byte[this.b ? 4096 : 8192];
+                     int var5 = this.in.read(var6);
+                     if (this.b) {
+                        this.a.b(var6, 0, var5, this.d);
+                     } else {
+                        this.a.a(var6, 0, var5, this.d);
+                     }
+                  }
+               }
+
+               return var4;
+            }
+         } else {
+            throw new IndexOutOfBoundsException();
+         }
+      } else {
+         throw new IndexOutOfBoundsException();
+      }
+   }
+
+   public synchronized void reset() {
+      throw new IOException("mark/reset not supported");
+   }
+
+   public long skip(long var1) {
+      if (var1 < 0L) {
+         throw new IllegalArgumentException("Negative skip length: " + var1);
+      } else {
+         byte[] var3 = new byte[512];
+
+         long var4;
+         int var7;
+         for(var4 = var1; var4 > 0L; var4 -= (long)var7) {
+            var7 = (int)Math.min(512L, var4);
+            if ((var7 = this.read(var3, 0, var7)) == -1) {
+               break;
+            }
+         }
+
+         return var1 - var4;
+      }
+   }
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/binary/BaseNCodecOutputStream.java
+================================================================================
+
+package org.apache.commons.codec.binary;
+
+import java.io.FilterOutputStream;
+import java.io.OutputStream;
+
+public class BaseNCodecOutputStream extends FilterOutputStream {
+   private final boolean a;
+   private final BaseNCodec b;
+   private final byte[] c = new byte[1];
+   private final a d = new a();
+
+   public BaseNCodecOutputStream(OutputStream var1, BaseNCodec var2, boolean var3) {
+      super(var1);
+      this.b = var2;
+      this.a = var3;
+   }
+
+   public void write(int var1) {
+      this.c[0] = (byte)var1;
+      this.write(this.c, 0, 1);
+   }
+
+   public void write(byte[] var1, int var2, int var3) {
+      if (var1 == null) {
+         throw new NullPointerException();
+      } else if (var2 >= 0 && var3 >= 0) {
+         if (var2 <= var1.length && var2 + var3 <= var1.length) {
+            if (var3 > 0) {
+               if (this.a) {
+                  this.b.b(var1, var2, var3, this.d);
+               } else {
+                  this.b.a(var1, var2, var3, this.d);
+               }
+
+               this.a(false);
+            }
+
+         } else {
+            throw new IndexOutOfBoundsException();
+         }
+      } else {
+         throw new IndexOutOfBoundsException();
+      }
+   }
+
+   private void a(boolean var1) {
+      int var2;
+      if ((var2 = BaseNCodec.b(this.d)) > 0) {
+         byte[] var3 = new byte[var2];
+         if ((var2 = this.b.c(var3, 0, var2, this.d)) > 0) {
+            this.out.write(var3, 0, var2);
+         }
+      }
+
+      if (var1) {
+         this.out.flush();
+      }
+
+   }
+
+   public void flush() {
+      this.a(true);
+   }
+
+   public void close() {
+      if (this.a) {
+         this.b.b(this.c, 0, -1, this.d);
+      } else {
+         this.b.a(this.c, 0, -1, this.d);
+      }
+
+      this.flush();
+      this.out.close();
+   }
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/binary/BinaryCodec.java
+================================================================================
+
+package org.apache.commons.codec.binary;
+
+import org.apache.commons.codec.BinaryDecoder;
+import org.apache.commons.codec.BinaryEncoder;
+import org.apache.commons.codec.DecoderException;
+import org.apache.commons.codec.EncoderException;
+
+public class BinaryCodec implements BinaryDecoder, BinaryEncoder {
+   private static final char[] a = new char[0];
+   private static final byte[] b = new byte[0];
+   private static final int[] c = new int[]{1, 2, 4, 8, 16, 32, 64, 128};
+
+   public byte[] encode(byte[] var1) {
+      return toAsciiBytes(var1);
+   }
+
+   public Object encode(Object var1) {
+      if (!(var1 instanceof byte[])) {
+         throw new EncoderException("argument not a byte array");
+      } else {
+         return toAsciiChars((byte[])var1);
+      }
+   }
+
+   public Object decode(Object var1) {
+      if (var1 == null) {
+         return b;
+      } else if (var1 instanceof byte[]) {
+         return fromAscii((byte[])var1);
+      } else if (var1 instanceof char[]) {
+         return fromAscii((char[])var1);
+      } else if (var1 instanceof String) {
+         return fromAscii(((String)var1).toCharArray());
+      } else {
+         throw new DecoderException("argument not a byte array");
+      }
+   }
+
+   public byte[] decode(byte[] var1) {
+      return fromAscii(var1);
+   }
+
+   public byte[] toByteArray(String var1) {
+      return var1 == null ? b : fromAscii(var1.toCharArray());
+   }
+
+   public static byte[] fromAscii(char[] var0) {
+      if (var0 != null && var0.length != 0) {
+         byte[] var1 = new byte[var0.length >> 3];
+         int var2 = 0;
+
+         for(int var3 = var0.length - 1; var2 < var1.length; var3 -= 8) {
+            for(int var4 = 0; var4 < 8; ++var4) {
+               if (var0[var3 - var4] == '1') {
+                  var1[var2] = (byte)(var1[var2] | c[var4]);
+               }
+            }
+
+            ++var2;
+         }
+
+         return var1;
+      } else {
+         return b;
+      }
+   }
+
+   public static byte[] fromAscii(byte[] var0) {
+      if (a(var0)) {
+         return b;
+      } else {
+         byte[] var1 = new byte[var0.length >> 3];
+         int var2 = 0;
+
+         for(int var3 = var0.length - 1; var2 < var1.length; var3 -= 8) {
+            for(int var4 = 0; var4 < 8; ++var4) {
+               if (var0[var3 - var4] == 49) {
+                  var1[var2] = (byte)(var1[var2] | c[var4]);
+               }
+            }
+
+            ++var2;
+         }
+
+         return var1;
+      }
+   }
+
+   private static boolean a(byte[] var0) {
+      return var0 == null || var0.length == 0;
+   }
+
+   public static byte[] toAsciiBytes(byte[] var0) {
+      if (a(var0)) {
+         return b;
+      } else {
+         byte[] var1 = new byte[var0.length << 3];
+         int var2 = 0;
+
+         for(int var3 = var1.length - 1; var2 < var0.length; var3 -= 8) {
+            for(int var4 = 0; var4 < 8; ++var4) {
+               if ((var0[var2] & c[var4]) == 0) {
+                  var1[var3 - var4] = 48;
+               } else {
+                  var1[var3 - var4] = 49;
+               }
+            }
+
+            ++var2;
+         }
+
+         return var1;
+      }
+   }
+
+   public static char[] toAsciiChars(byte[] var0) {
+      if (a(var0)) {
+         return a;
+      } else {
+         char[] var1 = new char[var0.length << 3];
+         int var2 = 0;
+
+         for(int var3 = var1.length - 1; var2 < var0.length; var3 -= 8) {
+            for(int var4 = 0; var4 < 8; ++var4) {
+               if ((var0[var2] & c[var4]) == 0) {
+                  var1[var3 - var4] = '0';
+               } else {
+                  var1[var3 - var4] = '1';
+               }
+            }
+
+            ++var2;
+         }
+
+         return var1;
+      }
+   }
+
+   public static String toAsciiString(byte[] var0) {
+      return new String(toAsciiChars(var0));
+   }
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/binary/CharSequenceUtils.java
+================================================================================
+
+package org.apache.commons.codec.binary;
+
+public class CharSequenceUtils {
+   static boolean a(CharSequence var0, boolean var1, int var2, CharSequence var3, int var4, int var5) {
+      if (var0 instanceof String && var3 instanceof String) {
+         return ((String)var0).regionMatches(false, 0, (String)var3, 0, var5);
+      } else {
+         var1 = 0;
+         var2 = 0;
+         var4 = var5;
+
+         while(var4-- > 0) {
+            var5 = var0.charAt(var1++);
+            char var6 = var3.charAt(var2++);
+            if (var5 != var6) {
+               return false;
+            }
+         }
+
+         return true;
+      }
+   }
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/binary/Hex.java
+================================================================================
+
+package org.apache.commons.codec.binary;
+
+import java.nio.charset.Charset;
+import org.apache.commons.codec.BinaryDecoder;
+import org.apache.commons.codec.BinaryEncoder;
+import org.apache.commons.codec.Charsets;
+import org.apache.commons.codec.DecoderException;
+import org.apache.commons.codec.EncoderException;
+
+public class Hex implements BinaryDecoder, BinaryEncoder {
+   public static final Charset DEFAULT_CHARSET;
+   public static final String DEFAULT_CHARSET_NAME = "UTF-8";
+   private static final char[] a;
+   private static final char[] b;
+   private final Charset c;
+
+   public static byte[] decodeHex(char[] var0) {
+      int var1;
+      if (((var1 = var0.length) & 1) != 0) {
+         throw new DecoderException("Odd number of characters.");
+      } else {
+         byte[] var2 = new byte[var1 >> 1];
+         int var3 = 0;
+
+         for(int var4 = 0; var4 < var1; ++var3) {
+            int var5 = toDigit(var0[var4], var4) << 4;
+            ++var4;
+            var5 |= toDigit(var0[var4], var4);
+            ++var4;
+            var2[var3] = (byte)var5;
+         }
+
+         return var2;
+      }
+   }
+
+   public static char[] encodeHex(byte[] var0) {
+      return encodeHex(var0, true);
+   }
+
+   public static char[] encodeHex(byte[] var0, boolean var1) {
+      return encodeHex(var0, var1 ? a : b);
+   }
+
+   protected static char[] encodeHex(byte[] var0, char[] var1) {
+      int var2;
+      char[] var3 = new char[(var2 = var0.length) << 1];
+      int var4 = 0;
+
+      for(int var5 = 0; var4 < var2; ++var4) {
+         var3[var5++] = var1[(240 & var0[var4]) >>> 4];
+         var3[var5++] = var1[15 & var0[var4]];
+      }
+
+      return var3;
+   }
+
+   public static String encodeHexString(byte[] var0) {
+      return new String(encodeHex(var0));
+   }
+
+   protected static int toDigit(char var0, int var1) {
+      int var2;
+      if ((var2 = Character.digit(var0, 16)) == -1) {
+         throw new DecoderException("Illegal hexadecimal character " + var0 + " at index " + var1);
+      } else {
+         return var2;
+      }
+   }
+
+   public Hex() {
+      this.c = DEFAULT_CHARSET;
+   }
+
+   public Hex(Charset var1) {
+      this.c = var1;
+   }
+
+   public Hex(String var1) {
+      this(Charset.forName(var1));
+   }
+
+   public byte[] decode(byte[] var1) {
+      return decodeHex((new String(var1, this.getCharset())).toCharArray());
+   }
+
+   public Object decode(Object var1) {
+      try {
+         return decodeHex(var1 instanceof String ? ((String)var1).toCharArray() : (char[])var1);
+      } catch (ClassCastException var2) {
+         throw new DecoderException(var2.getMessage(), var2);
+      }
+   }
+
+   public byte[] encode(byte[] var1) {
+      return encodeHexString(var1).getBytes(this.getCharset());
+   }
+
+   public Object encode(Object var1) {
+      try {
+         return encodeHex(var1 instanceof String ? ((String)var1).getBytes(this.getCharset()) : (byte[])var1);
+      } catch (ClassCastException var2) {
+         throw new EncoderException(var2.getMessage(), var2);
+      }
+   }
+
+   public Charset getCharset() {
+      return this.c;
+   }
+
+   public String getCharsetName() {
+      return this.c.name();
+   }
+
+   public String toString() {
+      return super.toString() + "[charsetName=" + this.c + "]";
+   }
+
+   static {
+      DEFAULT_CHARSET = Charsets.UTF_8;
+      a = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+      b = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+   }
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/binary/StringUtils.java
+================================================================================
+
+package org.apache.commons.codec.binary;
+
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import org.apache.commons.codec.Charsets;
+
+public class StringUtils {
+   public static boolean equals(CharSequence var0, CharSequence var1) {
+      if (var0 == var1) {
+         return true;
+      } else if (var0 != null && var1 != null) {
+         return var0 instanceof String && var1 instanceof String ? var0.equals(var1) : CharSequenceUtils.a(var0, false, 0, var1, 0, Math.max(var0.length(), var1.length()));
+      } else {
+         return false;
+      }
+   }
+
+   private static byte[] a(String var0, Charset var1) {
+      return var0 == null ? null : var0.getBytes(var1);
+   }
+
+   public static byte[] getBytesIso8859_1(String var0) {
+      return a(var0, Charsets.ISO_8859_1);
+   }
+
+   public static byte[] getBytesUnchecked(String var0, String var1) {
+      if (var0 == null) {
+         return null;
+      } else {
+         try {
+            return var0.getBytes(var1);
+         } catch (UnsupportedEncodingException var2) {
+            throw a(var1, var2);
+         }
+      }
+   }
+
+   public static byte[] getBytesUsAscii(String var0) {
+      return a(var0, Charsets.US_ASCII);
+   }
+
+   public static byte[] getBytesUtf16(String var0) {
+      return a(var0, Charsets.UTF_16);
+   }
+
+   public static byte[] getBytesUtf16Be(String var0) {
+      return a(var0, Charsets.UTF_16BE);
+   }
+
+   public static byte[] getBytesUtf16Le(String var0) {
+      return a(var0, Charsets.UTF_16LE);
+   }
+
+   public static byte[] getBytesUtf8(String var0) {
+      return a(var0, Charsets.UTF_8);
+   }
+
+   private static IllegalStateException a(String var0, UnsupportedEncodingException var1) {
+      return new IllegalStateException(var0 + ": " + var1);
+   }
+
+   public static String newString(byte[] var0, String var1) {
+      if (var0 == null) {
+         return null;
+      } else {
+         try {
+            return new String(var0, var1);
+         } catch (UnsupportedEncodingException var2) {
+            throw a(var1, var2);
+         }
+      }
+   }
+
+   public static String newStringIso8859_1(byte[] var0) {
+      return new String(var0, Charsets.ISO_8859_1);
+   }
+
+   public static String newStringUsAscii(byte[] var0) {
+      return new String(var0, Charsets.US_ASCII);
+   }
+
+   public static String newStringUtf16(byte[] var0) {
+      return new String(var0, Charsets.UTF_16);
+   }
+
+   public static String newStringUtf16Be(byte[] var0) {
+      return new String(var0, Charsets.UTF_16BE);
+   }
+
+   public static String newStringUtf16Le(byte[] var0) {
+      return new String(var0, Charsets.UTF_16LE);
+   }
+
+   public static String newStringUtf8(byte[] var0) {
+      Charset var1 = Charsets.UTF_8;
+      return var0 == null ? null : new String(var0, var1);
+   }
+}
+
+
+================================================================================
+// ARCHIVO: org/apache/commons/codec/binary/a.java
+================================================================================
+
+package org.apache.commons.codec.binary;
+
+import java.util.Arrays;
+
+final class a {
+   int a;
+   long b;
+   byte[] c;
+   int d;
+   int e;
+   boolean f;
+   int g;
+   int h;
+
+   public final String toString() {
+      return String.format("%s[buffer=%s, currentLinePos=%s, eof=%s, ibitWorkArea=%s, lbitWorkArea=%s, modulus=%s, pos=%s, readPos=%s]", this.getClass().getSimpleName(), Arrays.toString(this.c), this.g, this.f, this.a, this.b, this.h, this.d, this.e);
+   }
+}
+
