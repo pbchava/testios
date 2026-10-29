@@ -55,3 +55,97 @@ WHERE q.owner = 'MX_AO_AVOKA_OWNER'
   AND q.validated <> v.validated
 ORDER BY q.table_name, q.constraint_name;
 Nota: En los resultados de QTRO, los constraints con la cláusula ENABLE NOVALIDATE aparecerán con STATUS = 'ENABLED' y VALIDATED = 'NOT VALIDATED'. En VDM aparecerán con STATUS = 'ENABLED' y VALIDATED = 'VALIDATED'
+
+
+
+
+
+Para pasar las restricciones de ENABLE NOVALIDATE a ENABLE VALIDATE en Oracle, se utiliza la sentencia ALTER TABLE ... MODIFY CONSTRAINT ... VALIDATE (o simplemente ENABLE VALIDATE).
+
+A diferencia de un ENABLE simple que bloquea la tabla en modo exclusivo durante toda la verificación, se recomienda usar la sintaxis ENABLE NOVALIDATE (que ya tienen) seguida de ENABLE VALIDATE. De esta forma, Oracle solo valida los datos existentes sin necesidad de bloquear escrituras concurrentes (DML) por periodos prolongados.
+
+1. Script para generar las sentencias DDL
+Puedes ejecutar este script de consulta en SQL Developer, SQLcl o SQL*Plus conectado a QTRO para generar las sentencias exactas de las restricciones que están en estado NOT VALIDATED:
+
+SQL
+SELECT 
+    'ALTER TABLE "' || owner || '"."' || table_name || '" ENABLE VALIDATE CONSTRAINT "' || constraint_name || '";' AS ddl_validate
+FROM all_constraints
+WHERE owner = 'MX_AO_AVOKA_OWNER'
+  AND validated = 'NOT VALIDATED'
+  AND status = 'ENABLED'
+  AND constraint_type IN ('P', 'U', 'R', 'C')
+ORDER BY 
+    -- Se ordenan para validar primero PKs y Uniques, luego Checks y al final Foreign Keys
+    CASE constraint_type 
+        WHEN 'P' THEN 1 
+        WHEN 'U' THEN 2 
+        WHEN 'C' THEN 3 
+        WHEN 'R' THEN 4 
+        ELSE 5 
+    END,
+    table_name;
+2. Bloque PL/SQL automatizado con manejo de excepciones
+Si deseas encenderlas de forma automática mediante un bloque anónimo que registre qué restricciones se validaron exitosamente y cuáles fallaron (por ejemplo, si existen datos huérfanos o duplicados que impidan la validación):
+
+SQL
+SET SERVEROUTPUT ON SIZE UNLIMITED;
+
+DECLARE
+    v_sql VARCHAR2(1000);
+BEGIN
+    FOR c IN (
+        SELECT owner, table_name, constraint_name, constraint_type
+        FROM all_constraints
+        WHERE owner = 'MX_AO_AVOKA_OWNER'
+          AND validated = 'NOT VALIDATED'
+          AND status = 'ENABLED'
+          AND constraint_type IN ('P', 'U', 'C', 'R')
+        ORDER BY 
+            CASE constraint_type 
+                WHEN 'P' THEN 1 
+                WHEN 'U' THEN 2 
+                WHEN 'C' THEN 3 
+                WHEN 'R' THEN 4 
+                ELSE 5 
+            END,
+            table_name
+    ) LOOP
+        BEGIN
+            v_sql := 'ALTER TABLE "' || c.owner || '"."' || c.table_name || 
+                     '" ENABLE VALIDATE CONSTRAINT "' || c.constraint_name || '"';
+            EXECUTE IMMEDIATE v_sql;
+            DBMS_OUTPUT.PUT_LINE('VALIDADO: [' || c.constraint_type || '] ' || c.table_name || '.' || c.constraint_name);
+        EXCEPTION
+            WHEN OTHERS THEN
+                DBMS_OUTPUT.PUT_LINE('ERROR al validar ' || c.table_name || '.' || c.constraint_name || ': ' || SQLERRM);
+        END;
+    END LOOP;
+END;
+/
+3. Procedimiento en caso de error por datos inconsistentes (ORA-02298 u ORA-02299)
+Si alguna sentencia falla durante la validación:
+
+ORA-02298 (Foreign Key huérfana): Existen filas hijas que apuntan a una clave que no existe en la tabla padre.
+
+ORA-02299 (Primary Key / Unique duplicada): Existen registros con valores duplicados en la clave.
+
+Para aislar los registros que impiden la validación sin detener la producción, puedes apoyarte en una tabla de excepciones (EXCEPTIONS):
+
+Crear la tabla de excepciones de Oracle si no existe:
+
+SQL
+@?/rdbms/admin/utlexcpt.sql
+Ejecutar la validación dirigiendo las filas inválidas a dicha tabla:
+
+SQL
+ALTER TABLE "MX_AO_AVOKA_OWNER"."NOMBRE_TABLA" 
+ENABLE VALIDATE CONSTRAINT "NOMBRE_CONSTRAINT" 
+EXCEPTIONS INTO EXCEPTIONS;
+Consultar las filas que violan la restricción cruzando con la tabla destino:
+
+SQL
+SELECT t.* 
+FROM "MX_AO_AVOKA_OWNER"."NOMBRE_TABLA" t, EXCEPTIONS e
+WHERE t.rowid = e.row_id
+  AND e.constraint = 'NOMBRE_CONSTRAINT';
