@@ -149,3 +149,60 @@ SELECT t.*
 FROM "MX_AO_AVOKA_OWNER"."NOMBRE_TABLA" t, EXCEPTIONS e
 WHERE t.rowid = e.row_id
   AND e.constraint = 'NOMBRE_CONSTRAINT';
+
+
+
+
+
+SET SERVEROUTPUT ON SIZE UNLIMITED;
+
+DECLARE
+    v_sql            VARCHAR2(1000);
+    v_total_proc     PLS_INTEGER := 0;
+    v_total_err      PLS_INTEGER := 0;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('--- INICIANDO HABILITACION Y VALIDACION DINAMICA DE CONSTRAINTS ---');
+
+    FOR c IN (
+        SELECT 
+            table_name,
+            constraint_name,
+            constraint_type,
+            status,
+            validated
+        FROM user_constraints
+        WHERE (status = 'DISABLED' OR validated = 'NOT VALIDATED')
+          AND constraint_type IN ('P', 'U', 'C', 'R')
+        ORDER BY 
+            -- 1° Primary Keys, 2° Unique Keys, 3° Checks, 4° Foreign Keys
+            CASE constraint_type 
+                WHEN 'P' THEN 1 
+                WHEN 'U' THEN 2 
+                WHEN 'C' THEN 3 
+                WHEN 'R' THEN 4 
+                ELSE 5 
+            END,
+            table_name,
+            constraint_name
+    ) LOOP
+        BEGIN
+            v_sql := 'ALTER TABLE "' || c.table_name || '" ENABLE VALIDATE CONSTRAINT "' || c.constraint_name || '"';
+            EXECUTE IMMEDIATE v_sql;
+            
+            v_total_proc := v_total_proc + 1;
+            DBMS_OUTPUT.PUT_LINE('[OK] ' || RPAD(c.table_name || '.' || c.constraint_name, 55) || 
+                                 ' | Tipo: ' || c.constraint_type || 
+                                 ' | Origen: ' || RPAD(c.status || '/' || c.validated, 22) || 
+                                 ' -> ENABLED/VALIDATED');
+        EXCEPTION
+            WHEN OTHERS THEN
+                v_total_err := v_total_err + 1;
+                DBMS_OUTPUT.PUT_LINE('[ERROR] ' || c.table_name || '.' || c.constraint_name || 
+                                     ' | ORA Code: ' || SQLCODE || ' - ' || SQLERRM);
+        END;
+    END LOOP;
+
+    DBMS_OUTPUT.PUT_LINE('--------------------------------------------------------------------');
+    DBMS_OUTPUT.PUT_LINE('RESUMEN: Procesados con exito = ' || v_total_proc || ' | Errores = ' || v_total_err);
+END;
+/
