@@ -1,0 +1,57 @@
+En el diccionario de datos de Oracle, el estado de validación de una restricción se consulta en la columna VALIDATED de las vistas ALL_CONSTRAINTS, DBA_CONSTRAINTS o USER_CONSTRAINTS.
+
+Si el constraint se creó o modificó con NOVALIDATE, el valor en dicha columna es 'NOT VALIDATED'.
+
+Si el constraint está validado con ENABLE regular, el valor es 'VALIDATED'.
+
+1. Query para ejecutar en cada base de datos por separado
+Puedes ejecutar esta consulta conectándote a cada entorno (QTRO y VDM) para listar los constraints de tipo Primary Key (P), Foreign Key (R) y Unique (U), mostrando su estado y validación:
+
+SQL
+SELECT 
+    owner,
+    table_name,
+    constraint_name,
+    constraint_type, -- P: Primary Key, R: Foreign Key / Referential, U: Unique, C: Check
+    status,          -- ENABLED / DISABLED
+    validated        -- VALIDATED / NOT VALIDATED
+FROM all_constraints
+WHERE owner = 'MX_AO_AVOKA_OWNER'
+  AND constraint_type IN ('P', 'R', 'U')
+ORDER BY table_name, constraint_type, constraint_name;
+2. Query de resumen / conteo ejecutivo por ambiente
+Para obtener un conteo rápido que demuestre la proporción de constraints en estado NOT VALIDATED frente a VALIDATED:
+
+SQL
+SELECT 
+    status,
+    validated,
+    constraint_type,
+    COUNT(*) AS total_constraints
+FROM all_constraints
+WHERE owner = 'MX_AO_AVOKA_OWNER'
+  AND constraint_type IN ('P', 'R', 'U')
+GROUP BY status, validated, constraint_type
+ORDER BY constraint_type, status, validated;
+3. Query comparativo lado a lado (usando Database Link)
+Si cuentas con un DB Link creado desde una base de datos hacia la otra (por ejemplo, desde QTRO apuntando a VDM mediante @DBL_VDM, o viceversa), puedes contrastar los dos esquemas en una sola consulta:
+
+SQL
+SELECT 
+    q.table_name,
+    q.constraint_name,
+    q.constraint_type,
+    q.status     AS qtro_status,
+    q.validated  AS qtro_validated,
+    v.status     AS vdm_status,
+    v.validated  AS vdm_validated
+FROM all_constraints q
+JOIN all_constraints@DBL_VDM v 
+  ON  q.owner           = v.owner 
+  AND q.table_name      = v.table_name 
+  AND q.constraint_name = v.constraint_name
+WHERE q.owner = 'MX_AO_AVOKA_OWNER'
+  AND q.constraint_type IN ('P', 'R', 'U')
+  AND q.validated <> v.validated
+ORDER BY q.table_name, q.constraint_name;
+Nota: En los resultados de QTRO, los constraints con la cláusula ENABLE NOVALIDATE aparecerán con STATUS = 'ENABLED' y VALIDATED = 'NOT VALIDATED'. En VDM aparecerán con STATUS = 'ENABLED' y VALIDATED = 'VALIDATED'
